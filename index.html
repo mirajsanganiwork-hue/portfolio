@@ -6,357 +6,705 @@
 <title>Miraj Sangani — Project Portfolio</title>
 <meta name="description" content="Data & Business Analyst portfolio — interactive dashboards, financial models, and data-driven insights.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <style>
 :root{
-  --bg:#070b12;--surface:rgba(22,30,46,0.55);--border:rgba(148,163,184,0.07);
-  --text:#e2e8f0;--muted:#8892b0;--dim:#4a5568;
-  --teal:#64ffda;--teal-dim:rgba(100,255,218,0.08);--teal-mid:rgba(100,255,218,0.18);
-  --indigo:#a78bfa;--indigo-dim:rgba(167,139,250,0.08);--indigo-mid:rgba(167,139,250,0.18);
-  --amber:#fcd34d;--amber-dim:rgba(252,211,77,0.08);--amber-mid:rgba(252,211,77,0.18);
-  --rose:#fb7185;
-  --display:'Source Serif 4',Georgia,serif;
-  --body:'Outfit',system-ui,sans-serif;
-  --mono:'SF Mono','Fira Code',monospace;
+  --white:#ffffff;
+  --primary:#535da1;
+  --primary-soft:rgba(83,93,161,0.10);
+  --secondary:#14B789;
+  --secondary-soft:rgba(20,183,137,0.10);
+  --section-bg:#f9f9f9;
+  --dark:#000000;
+  --p:#717275;
+  --border:#e9eaeb;
+  --featured-border:#727aab;
+  --amber:#D4A017;
+  --amber-soft:rgba(212,160,23,0.10);
+  --red:#e74c3c;
+  --r-large:100px;
+  --r-med:20px;
+  --r-small:10px;
+  --body:'DM Sans',system-ui,-apple-system,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{font-family:var(--body);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
-::selection{background:rgba(100,255,218,0.25);color:#fff}
-a{color:var(--teal);text-decoration:none;transition:opacity .2s}
-a:hover{opacity:.8}
+body{font-family:var(--body);background:var(--white);color:var(--dark);overflow-x:hidden;line-height:1.6;font-weight:400}
+::selection{background:var(--secondary);color:#fff}
+a{color:var(--secondary);text-decoration:none;transition:all .3s}
+a:hover{color:var(--primary)}
+h1,h2,h3,h4,h5,h6{font-weight:700;letter-spacing:-1px;color:var(--dark);line-height:1.2}
+h1{font-size:62px;letter-spacing:-3px}
+h2{font-size:42px;color:var(--secondary);letter-spacing:-2px}
+h3{font-size:30px}
+h4{font-size:24px}
+h5{font-size:20px;line-height:normal}
+h6{font-size:18px}
+p{color:var(--p);font-size:17px;font-weight:400}
 
-/* ═══ NAV ═══ */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 48px;display:flex;justify-content:space-between;align-items:center;transition:all .35s}
-.nav.scrolled{background:rgba(7,11,18,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-.nav-logo{font-family:var(--display);font-weight:700;font-size:20px;color:var(--teal);cursor:pointer;letter-spacing:-.5px}
-.nav-logo em{font-style:normal;color:var(--indigo)}
-.nav-links{display:flex;gap:36px}
-.nav-links a{color:var(--muted);font-size:14px;font-weight:500;letter-spacing:.3px;transition:color .2s}
-.nav-links a:hover{color:var(--teal);opacity:1}
-.hamburger{display:none;background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer}
+.section-title-wrap{background:var(--secondary);border-radius:var(--r-small);padding:8px 22px;display:inline-block;color:#fff;font-weight:700;font-size:13px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:18px}
 
-/* ═══ HERO ═══ */
-.hero{min-height:92vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:0 48px}
-.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(100,255,218,.04) 1px,transparent 1px);background-size:24px 24px;pointer-events:none}
-.hero-inner{text-align:center;max-width:720px;position:relative;z-index:2}
-.hero-label{font-family:var(--body);font-size:12px;font-weight:600;color:var(--teal);letter-spacing:3.5px;text-transform:uppercase;margin-bottom:20px;opacity:.9}
-.hero h1{font-family:var(--display);font-size:64px;font-weight:700;line-height:1.08;margin-bottom:22px;letter-spacing:-1.5px}
-.hero p{font-size:17px;color:var(--muted);line-height:1.75;margin-bottom:40px;max-width:520px;margin-left:auto;margin-right:auto;font-weight:300}
-.btn-primary{display:inline-block;padding:14px 32px;background:var(--teal);color:var(--bg);border:none;border-radius:6px;font-weight:700;font-size:15px;cursor:pointer;font-family:var(--body);transition:all .25s;letter-spacing:.3px}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(100,255,218,.15);opacity:1}
-.btn-outline{display:inline-block;padding:14px 32px;border:1px solid rgba(100,255,218,.3);color:var(--teal);border-radius:6px;font-weight:700;font-size:15px;cursor:pointer;background:transparent;font-family:var(--body);transition:all .25s}
-.btn-outline:hover{background:var(--teal-dim);opacity:1}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;transition:all .35s;background:transparent}
+.nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 5%}
+.nav-logo{font-weight:700;font-size:22px;color:var(--dark);cursor:pointer;letter-spacing:-1px}
+.nav-logo em{font-style:normal;color:var(--secondary)}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{color:var(--p);font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--secondary)}
+.nav-cta{padding:10px 22px;background:var(--secondary);color:#fff!important;border-radius:var(--r-large);font-size:13px;font-weight:700}
+.nav-cta:hover{background:var(--primary);color:#fff!important}
+.hamburger{display:none;background:none;border:none;color:var(--dark);font-size:24px;cursor:pointer}
 
-/* ═══ SECTIONS ═══ */
-.section{max-width:1200px;margin:0 auto;padding:80px 48px}
-.sec-label{font-size:12px;font-weight:600;color:var(--teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}
-.sec-title{font-family:var(--display);font-size:34px;font-weight:700;margin-bottom:40px;letter-spacing:-.5px}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 5% 80px;background:linear-gradient(180deg,var(--white) 0%,var(--section-bg) 100%)}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,var(--primary-soft) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-150px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,var(--secondary-soft) 0%,transparent 70%);pointer-events:none}
+.hero-inner{text-align:center;max-width:820px;position:relative;z-index:2}
+.hero h1{margin-bottom:24px}
+.hero h1 .accent{color:var(--secondary)}
+.hero p{font-size:18px;line-height:1.7;margin-bottom:36px;max-width:560px;margin-left:auto;margin-right:auto}
+.hero-status{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:var(--r-large);font-size:13px;font-weight:600;color:var(--secondary);border:1px solid rgba(20,183,137,0.25);background:var(--secondary-soft);margin-bottom:20px}
+.hero-status .dot{width:8px;height:8px;border-radius:50%;background:var(--secondary);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:var(--r-large);font-weight:700;font-size:15px;cursor:pointer;font-family:inherit;transition:all .25s;border:none;text-decoration:none}
+.btn-primary{background:var(--secondary);color:#fff}
+.btn-primary:hover{background:var(--primary);color:#fff;transform:translateY(-2px);box-shadow:0 10px 25px rgba(20,183,137,0.3)}
+.btn-outline{background:transparent;color:var(--p);border:2px solid var(--border)}
+.btn-outline:hover{background:var(--secondary);border-color:var(--secondary);color:#fff}
+
+.skills-bar{padding:60px 5% 80px;text-align:center;background:var(--section-bg)}
+.skills-bar .label{font-size:12px;font-weight:700;color:var(--secondary);letter-spacing:2px;text-transform:uppercase;margin-bottom:24px}
+.skills-bar .pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:900px;margin:0 auto}
+.pill{padding:10px 22px;border-radius:var(--r-large);font-size:14px;font-weight:500;border:1px solid var(--border);background:var(--white);color:var(--p);transition:all .3s}
+.pill:hover{border-color:var(--secondary);color:var(--secondary);transform:translateY(-2px)}
+
+.section{padding:100px 5%;max-width:1400px;margin:0 auto}
+.section.bg{background:var(--section-bg);max-width:none;padding-left:5%;padding-right:5%}
+.section.bg .section-inner{max-width:1400px;margin:0 auto}
+.sec-head{text-align:center;margin-bottom:60px}
+.sec-head h2{margin-bottom:14px}
+.sec-head p{max-width:560px;margin:0 auto}
 .fade-in{opacity:0;transform:translateY(28px);transition:all .7s cubic-bezier(.16,1,.3,1)}
 .fade-in.vis{opacity:1;transform:none}
 
-/* ═══ TABS ═══ */
-.tab-row{display:flex;gap:12px;margin-bottom:44px;overflow-x:auto;padding-bottom:4px}
-.tab-row::-webkit-scrollbar{height:0}
-.ptab{padding:12px 24px;border:1px solid var(--border);border-radius:8px;background:transparent;color:var(--dim);cursor:pointer;font-family:var(--body);font-size:14px;font-weight:600;transition:all .25s;white-space:nowrap;text-align:left}
-.ptab:hover{border-color:rgba(100,255,218,.25);color:var(--muted)}
-.ptab.on{background:var(--teal-dim);border-color:rgba(100,255,218,.4);color:var(--teal)}
-.ptab .sub{display:block;font-size:10px;font-weight:500;margin-bottom:2px;letter-spacing:1px;text-transform:uppercase}
-.project{display:none}.project.active{display:block}
+.tab-row{display:flex;gap:12px;margin-bottom:48px;justify-content:center;flex-wrap:wrap}
+.ptab{padding:12px 24px;border:2px solid var(--border);border-radius:var(--r-large);background:var(--white);color:var(--p);cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;transition:all .25s;white-space:nowrap}
+.ptab:hover{border-color:var(--secondary);color:var(--secondary)}
+.ptab.on{background:var(--secondary);border-color:var(--secondary);color:#fff}
+.ptab .sub{display:block;font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:2px;opacity:.85}
+.project{display:none}.project.active{display:block;animation:fadeUp .5s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 
-/* ═══ TAGS ═══ */
-.tag{display:inline-block;padding:4px 10px;border-radius:4px;font-size:11px;font-weight:600;margin:3px;letter-spacing:.3px}
-.tag-t{background:var(--teal-dim);color:var(--teal);border:1px solid rgba(100,255,218,.12)}
-.tag-i{background:var(--indigo-dim);color:var(--indigo);border:1px solid rgba(167,139,250,.12)}
-.tag-a{background:var(--amber-dim);color:var(--amber);border:1px solid rgba(252,211,77,.12)}
+.proj-head{background:var(--white);border:1px solid var(--border);border-radius:var(--r-med);padding:36px 38px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,0,0,0.02)}
+.proj-num{font-size:12px;color:var(--secondary);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.proj-title{font-size:30px;font-weight:700;margin-bottom:14px;letter-spacing:-1px;color:var(--dark)}
+.proj-desc{color:var(--p);font-size:17px;line-height:1.65;margin-bottom:18px;max-width:820px}
+.tag{display:inline-block;padding:5px 12px;border-radius:var(--r-large);font-size:12px;font-weight:600;margin:3px}
+.tag-p{background:var(--primary-soft);color:var(--primary);border:1px solid rgba(83,93,161,0.2)}
+.tag-s{background:var(--secondary-soft);color:var(--secondary);border:1px solid rgba(20,183,137,0.25)}
+.tag-a{background:var(--amber-soft);color:var(--amber);border:1px solid rgba(212,160,23,0.25)}
 
-/* ═══ GRIDS ═══ */
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
-.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
 
-/* ═══ METRIC CARDS ═══ */
-.mc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 16px;text-align:center;transition:border-color .3s}
-.mc:hover{border-color:rgba(100,255,218,.2)}
-.mc .v{font-family:var(--display);font-size:28px;font-weight:700;margin-bottom:2px}
-.mc .l{font-size:13px;font-weight:600;color:var(--text)}
-.mc .s{font-size:11px;color:var(--dim);margin-top:3px;font-weight:400}
+.mc{background:var(--white);border:1px solid var(--border);border-radius:var(--r-med);padding:24px 20px;text-align:center;transition:all .3s;position:relative;overflow:hidden}
+.mc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--secondary);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.mc:hover::before{transform:scaleX(1)}
+.mc:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,0.05);border-color:var(--secondary)}
+.mc.p::before{background:var(--primary)}.mc.p:hover{border-color:var(--primary)}
+.mc.a::before{background:var(--amber)}.mc.a:hover{border-color:var(--amber)}
+.mc .v{font-size:34px;font-weight:700;margin-bottom:4px;letter-spacing:-1.5px;color:var(--dark)}
+.mc .l{font-size:14px;font-weight:600;color:var(--dark)}
+.mc .s{font-size:12px;color:var(--p);margin-top:4px;font-weight:400}
 
-/* ═══ CHART BOX ═══ */
-.cb{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 24px}
-.cb h4{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:12px;letter-spacing:.3px}
+.dl{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-large);color:var(--dark);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;text-decoration:none}
+.dl:hover{border-color:var(--secondary);background:var(--secondary-soft);color:var(--secondary);transform:translateY(-1px)}
+.dl .ar{color:var(--p);font-size:11px}
+.downloads-label{font-size:11px;font-weight:700;color:var(--p);margin-bottom:10px;text-transform:uppercase;letter-spacing:1.5px}
 
-/* ═══ INSIGHT ═══ */
-.ins{background:rgba(22,30,46,.4);border-left:3px solid var(--teal);padding:14px 20px;border-radius:0 6px 6px 0;margin:8px 0;font-size:13px;line-height:1.7;color:var(--muted);font-weight:400}
-.ins strong{color:var(--text);font-weight:600}
+/* DASHBOARD LAUNCH CARDS */
+.dash-launch{border-radius:var(--r-med);padding:38px 36px;margin:24px 0;display:flex;gap:32px;align-items:center;flex-wrap:wrap;color:#fff;position:relative;overflow:hidden;box-shadow:0 10px 40px rgba(83,93,161,0.25)}
+.dash-launch.g1{background:linear-gradient(135deg,var(--primary) 0%,var(--secondary) 100%)}
+.dash-launch.g2{background:linear-gradient(135deg,var(--secondary) 0%,var(--amber) 100%);box-shadow:0 10px 40px rgba(20,183,137,0.25)}
+.dash-launch.g3{background:linear-gradient(135deg,var(--amber) 0%,var(--primary) 100%);box-shadow:0 10px 40px rgba(212,160,23,0.25)}
+.dash-launch::before{content:'';position:absolute;top:-50px;right:-50px;width:300px;height:300px;background:radial-gradient(circle,rgba(255,255,255,0.1) 0%,transparent 70%);pointer-events:none}
+.dash-launch .di{flex-shrink:0;width:80px;height:80px;background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:var(--r-med);display:flex;align-items:center;justify-content:center;font-size:38px;border:1px solid rgba(255,255,255,0.2)}
+.dash-launch .dinfo{flex:1;min-width:260px;position:relative;z-index:1}
+.dash-launch h3{color:#fff;font-size:26px;font-weight:700;margin-bottom:8px;letter-spacing:-.5px}
+.dash-launch p{color:rgba(255,255,255,0.9);font-size:15px;line-height:1.65;margin-bottom:16px;max-width:540px}
+.dash-launch .dmeta{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,0.8);font-weight:500}
+.dash-launch .dmeta b{color:#fff;font-weight:700;margin-left:4px}
+.btn-launch{position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px;padding:16px 30px;background:#fff;color:var(--primary);border:none;border-radius:var(--r-large);font-weight:700;font-size:15px;cursor:pointer;font-family:inherit;transition:all .25s;text-decoration:none}
+.btn-launch:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,0.2);color:var(--primary)}
+.btn-launch .arr{font-size:18px;transition:transform .2s}
+.btn-launch:hover .arr{transform:translateX(4px)}
+.dash-launch.g2 .btn-launch{color:var(--secondary)}
+.dash-launch.g3 .btn-launch{color:var(--amber)}
 
-/* ═══ TABLES ═══ */
-.tw{overflow-x:auto;border-radius:8px;border:1px solid var(--border);margin-bottom:16px}
-.st{width:100%;border-collapse:collapse;font-size:13px}
-.st th{padding:12px 16px;text-align:left;background:rgba(22,30,46,.7);color:var(--dim);cursor:pointer;font-weight:600;font-size:11px;letter-spacing:.8px;text-transform:uppercase;border-bottom:1px solid var(--border);user-select:none;white-space:nowrap;transition:color .2s}
-.st th:hover,.st th.sorted{color:var(--teal)}
-.st td{padding:10px 16px;border-bottom:1px solid rgba(148,163,184,.03);white-space:nowrap;color:var(--muted);font-weight:400}
-.st tr:hover td{background:rgba(100,255,218,.02)}
-.st tr.hl td{background:rgba(100,255,218,.04);color:var(--teal)}
-.st td:first-child{font-weight:600;color:var(--text)}
-
-/* ═══ DOWNLOAD BTN ═══ */
-.dl{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:12px;font-weight:600;cursor:pointer;font-family:var(--body);transition:all .2s}
-.dl:hover{border-color:rgba(100,255,218,.3);opacity:1}
-.dl .ar{color:var(--dim);font-size:10px}
-
-/* ═══ POWER BI ═══ */
-.pbi{background:var(--surface);border:2px dashed rgba(167,139,250,.2);border-radius:8px;padding:24px 20px;text-align:center;margin:16px 0}
-
-/* ═══ SKILLS ═══ */
-.sk{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px 22px}
-.sk h4{font-size:14px;font-weight:700;margin-bottom:16px}
-.sk-item{padding:8px 0;font-size:14px;color:var(--muted);border-bottom:1px solid rgba(148,163,184,.05);font-weight:400}
+.sk{background:var(--white);border:1px solid var(--border);border-radius:var(--r-med);padding:32px 28px;transition:all .3s}
+.sk:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.06);border-color:var(--secondary)}
+.sk-icon{width:56px;height:56px;border-radius:var(--r-small);display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:24px;color:#fff}
+.sk-icon.p{background:var(--primary)}.sk-icon.s{background:var(--secondary)}.sk-icon.a{background:var(--amber)}
+.sk h4{font-size:20px;font-weight:700;margin-bottom:18px;color:var(--dark);letter-spacing:-.3px}
+.sk-item{padding:10px 0;font-size:15px;color:var(--p);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.sk-item::before{content:'✓';color:var(--secondary);font-weight:700;font-size:14px}
 .sk-item:last-child{border-bottom:none}
 
-/* ═══ CONTACT ═══ */
-.contact{max-width:600px;margin:0 auto;padding:100px 48px 120px;text-align:center}
-.ct-row{font-size:15px;margin-bottom:12px}
-.ct-row .lb{color:var(--dim);margin-right:12px;font-size:13px;font-weight:500;letter-spacing:.5px;text-transform:uppercase}
+.contact{background:var(--section-bg);padding:100px 5%;text-align:center}
+.contact-inner{max-width:620px;margin:0 auto}
+.contact h2{margin-bottom:14px}
+.contact .role{color:var(--p);font-size:15px;margin-bottom:8px;font-weight:500}
+.contact .avail{color:var(--p);font-size:14px;margin-bottom:36px}
+.ct-list{background:var(--white);border:1px solid var(--border);border-radius:var(--r-med);padding:28px;margin-bottom:32px;text-align:left}
+.ct-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);font-size:15px}
+.ct-row:last-child{border-bottom:none}
+.ct-row .lb{color:var(--p);font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.ct-row a{color:var(--dark);font-weight:500}
+.ct-row a:hover{color:var(--secondary)}
+.contact-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.footer{padding:32px 5% 28px;text-align:center;color:var(--p);font-size:13px;background:var(--white);border-top:1px solid var(--border)}
 
-/* ═══ PROJECT HEADER ═══ */
-.pn{font-size:11px;color:var(--dim);font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
-.pt{font-family:var(--display);font-size:26px;font-weight:700;margin-bottom:8px;letter-spacing:-.3px}
-.pd{color:var(--muted);font-size:15px;line-height:1.75;max-width:720px;margin-bottom:16px;font-weight:300}
+/* ═══ DASHBOARD MODAL ═══ */
+.dash-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.75);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto}
+.dash-overlay.on{display:flex;animation:fIn .25s ease}
+@keyframes fIn{from{opacity:0}to{opacity:1}}
+.dash-app{width:100%;max-width:1400px;background:var(--white);border-radius:var(--r-med);overflow:hidden;color:var(--dark);box-shadow:0 30px 80px rgba(0,0,0,0.5);animation:sUp .4s cubic-bezier(.16,1,.3,1)}
+@keyframes sUp{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
 
-/* ═══ SKILLS BAR ═══ */
-.skills-bar{max-width:1200px;margin:0 auto;padding:0 48px 80px;text-align:center}
-.skills-bar .pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:14px}
-.pill{padding:9px 20px;border-radius:20px;font-size:13px;font-weight:500;letter-spacing:.3px;border:1px solid var(--border);background:transparent;color:var(--muted);transition:all .3s}
-.pill:hover{border-color:rgba(100,255,218,.2);color:var(--text)}
-.pill-t{color:var(--teal);border-color:rgba(100,255,218,.15)}
-.pill-i{color:var(--indigo);border-color:rgba(167,139,250,.15)}
-.pill-a{color:var(--amber);border-color:rgba(252,211,77,.15)}
-.pill-r{color:var(--rose);border-color:rgba(251,113,133,.15)}
-.status-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:600;color:var(--teal);border:1px solid rgba(100,255,218,.2);background:var(--teal-dim)}
-.status-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+.dtop{display:flex;align-items:center;gap:14px;padding:14px 24px;background:var(--section-bg);border-bottom:1px solid var(--border)}
+.dlogo{width:40px;height:40px;border-radius:var(--r-small);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px;flex-shrink:0;letter-spacing:-.5px}
+.dlogo.g1{background:linear-gradient(135deg,var(--primary),var(--secondary))}
+.dlogo.g2{background:linear-gradient(135deg,var(--secondary),var(--amber))}
+.dlogo.g3{background:linear-gradient(135deg,var(--amber),var(--primary))}
+.dttl{flex:1;min-width:0}
+.dttl .t1{font-size:16px;font-weight:700;color:var(--dark);letter-spacing:-.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dttl .t2{font-size:12px;color:var(--p);margin-top:2px}
+.dpill{padding:6px 14px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-large);font-size:12px;font-weight:600;color:var(--secondary);display:inline-flex;align-items:center;gap:6px}
+.dpill .pdot{width:7px;height:7px;border-radius:50%;background:var(--secondary);animation:pulse 2s infinite}
+.dclose{width:40px;height:40px;border:1px solid var(--border);background:var(--white);border-radius:var(--r-small);cursor:pointer;font-size:18px;color:var(--p);display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:inherit}
+.dclose:hover{background:var(--red);color:#fff;border-color:var(--red)}
 
-/* ═══ RESPONSIVE — DESKTOP FIRST ═══ */
-/* Large screens (1440px+) — expand layout */
-@media(min-width:1440px){
-  .section{max-width:1320px;padding:100px 64px}
-  .skills-bar{max-width:1320px;padding:0 64px 100px}
-  .hero h1{font-size:72px}
-  .hero-inner{max-width:800px}
-  .hero p{font-size:18px;max-width:560px}
-  .nav{padding:20px 64px}
-  .mc .v{font-size:32px}
-  .sec-title{font-size:38px}
-  .contact{max-width:680px;padding:120px 64px 140px}
-}
-/* Tablet landscape — stack 2-col where needed */
+.dfilt{display:flex;flex-wrap:wrap;gap:20px;padding:16px 24px;background:var(--white);border-bottom:1px solid var(--border);align-items:center}
+.fgroup{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.flab{font-size:11px;font-weight:700;color:var(--dark);letter-spacing:.8px;text-transform:uppercase;margin-right:4px}
+.fchip{padding:7px 16px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-large);font-size:12px;font-weight:600;color:var(--p);cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap}
+.fchip:hover{border-color:var(--primary);color:var(--primary)}
+.fchip.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.fchip.green.active{background:var(--secondary);border-color:var(--secondary)}
+.fchip.amber.active{background:var(--amber);border-color:var(--amber)}
+.freset{margin-left:auto;font-size:12px;color:var(--primary);background:none;border:none;cursor:pointer;font-family:inherit;font-weight:700;text-decoration:underline;padding:6px 8px}
+.freset:hover{color:var(--secondary)}
+
+.dgrid{padding:24px;background:var(--section-bg);display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.tile{background:var(--white);border-radius:var(--r-med);padding:20px 22px;border:1px solid var(--border);display:flex;flex-direction:column;transition:box-shadow .2s}
+.tile:hover{box-shadow:0 6px 24px rgba(0,0,0,0.06)}
+.tile h5{font-size:12px;font-weight:700;color:var(--dark);letter-spacing:.3px;text-transform:uppercase;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tile h5 .sub{font-weight:500;text-transform:none;letter-spacing:0;font-size:11px;color:var(--p)}
+
+.kpi{grid-column:span 3;padding:22px 24px}
+.kpi .accent{width:40px;height:4px;border-radius:2px;margin-bottom:14px}
+.kpi.k1 .accent{background:var(--primary)}
+.kpi.k2 .accent{background:var(--secondary)}
+.kpi.k3 .accent{background:var(--amber)}
+.kpi.k4 .accent{background:var(--red)}
+.kpi .lbl{font-size:11px;font-weight:700;color:var(--p);letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px}
+.kpi .v{font-size:34px;font-weight:700;color:var(--dark);letter-spacing:-1.5px;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi .delta{font-size:12px;font-weight:600;margin-top:6px;color:var(--p)}
+.kpi .delta.up{color:var(--secondary)}
+.kpi .delta.down{color:var(--red)}
+
+.tile-w4{grid-column:span 4}
+.tile-w5{grid-column:span 5}
+.tile-w6{grid-column:span 6}
+.tile-w7{grid-column:span 7}
+.tile-w8{grid-column:span 8}
+.tile-w12{grid-column:span 12}
+.chart-host{position:relative;width:100%;height:260px}
+.chart-host.tall{height:340px}
+
+.prod-list{display:flex;flex-direction:column;gap:10px;overflow-y:auto;max-height:340px}
+.prod-row{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:var(--r-small);background:var(--section-bg);transition:all .15s;font-size:13px;border:1px solid transparent}
+.prod-row:hover{background:var(--white);border-color:var(--secondary)}
+.prod-row .rank{width:28px;height:28px;border-radius:var(--r-small);background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.prod-row:nth-child(-n+3) .rank{background:var(--secondary)}
+.prod-row .name{flex:1;min-width:0;font-weight:600;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prod-row .rev{font-weight:700;color:var(--primary);font-size:12px;font-variant-numeric:tabular-nums}
+
+.dtbl{width:100%;border-collapse:collapse;font-size:13px}
+.dtbl thead th{padding:12px 14px;text-align:left;background:var(--section-bg);color:var(--p);font-weight:700;font-size:11px;letter-spacing:.5px;text-transform:uppercase;border-bottom:2px solid var(--border);cursor:pointer;user-select:none;white-space:nowrap;position:sticky;top:0;z-index:1}
+.dtbl thead th:hover{color:var(--primary)}
+.dtbl thead th.sorted{color:var(--primary);background:var(--primary-soft)}
+.dtbl tbody td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--p);white-space:nowrap;font-variant-numeric:tabular-nums}
+.dtbl tbody td:first-child{font-weight:600;color:var(--dark)}
+.dtbl tbody tr:hover{background:var(--section-bg)}
+.dtbl tbody tr.hl td{background:var(--secondary-soft)}
+.dtbl tbody tr.hl td:first-child{color:var(--secondary)}
+.tbl-scroll{max-height:380px;overflow-y:auto;border:1px solid var(--border);border-radius:var(--r-small)}
+
+.empty{text-align:center;color:var(--p);font-size:14px;padding:50px 20px}
+
+.ins-tile{background:linear-gradient(135deg,var(--primary-soft) 0%,var(--secondary-soft) 100%);border-radius:var(--r-small);padding:18px 22px;border-left:4px solid var(--primary)}
+.ins-tile.s{border-left-color:var(--secondary);background:var(--secondary-soft)}
+.ins-tile.a{border-left-color:var(--amber);background:var(--amber-soft)}
+.ins-tile .ihead{font-size:11px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.ins-tile.s .ihead{color:var(--secondary)}
+.ins-tile.a .ihead{color:var(--amber)}
+.ins-tile .ibody{font-size:13px;line-height:1.6;color:var(--p)}
+.ins-tile .ibody strong{color:var(--dark);font-weight:700}
+
+/* PP BREAKEVEN CALCULATOR */
+.be-calc{display:flex;flex-direction:column;gap:14px}
+.be-display{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.be-cell{background:var(--section-bg);border-radius:var(--r-small);padding:12px 14px;border:1px solid var(--border)}
+.be-cell .l{font-size:10px;font-weight:700;color:var(--p);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.be-cell .v{font-size:18px;font-weight:700;color:var(--dark);font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+.be-cell.good .v{color:var(--secondary)}
+.be-cell.bad .v{color:var(--red)}
+.be-slider-wrap{padding:8px 0}
+.be-slider-label{display:flex;justify-content:space-between;font-size:12px;color:var(--p);margin-bottom:10px;font-weight:500}
+.be-slider-label b{color:var(--dark);font-weight:700;font-size:14px}
+.be-slider{-webkit-appearance:none;appearance:none;width:100%;height:6px;background:var(--border);border-radius:3px;outline:none;cursor:pointer}
+.be-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;background:var(--primary);border:3px solid #fff;border-radius:50%;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.15);transition:transform .15s}
+.be-slider::-webkit-slider-thumb:hover{transform:scale(1.15)}
+.be-slider::-moz-range-thumb{width:20px;height:20px;background:var(--primary);border:3px solid #fff;border-radius:50%;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.15)}
+.be-meter{position:relative;height:24px;background:var(--section-bg);border:1px solid var(--border);border-radius:var(--r-small);overflow:hidden;margin-top:6px}
+.be-meter-fill{position:absolute;top:0;left:0;bottom:0;background:linear-gradient(90deg,var(--secondary) 0%,var(--amber) 100%);transition:width .15s ease;border-radius:var(--r-small) 0 0 var(--r-small)}
+.be-meter-marker{position:absolute;top:0;bottom:0;width:2px;background:var(--red);left:46%}
+.be-meter-marker::after{content:'BE: 162';position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:700;color:var(--red);white-space:nowrap;background:#fff;padding:0 4px;border-radius:2px}
+
+.dfoot{padding:14px 24px;background:var(--section-bg);border-top:1px solid var(--border);font-size:12px;color:var(--p);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.dfoot .left{display:flex;gap:14px;align-items:center}
+.dfoot .badge{padding:4px 10px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-small);font-weight:700;color:var(--primary);font-size:11px}
+
 @media(max-width:1023px){
-  .g2{grid-template-columns:1fr}
+  h1{font-size:48px;letter-spacing:-2px}h2{font-size:32px}h3{font-size:24px}
   .g4{grid-template-columns:1fr 1fr}
-  .section{padding:60px 32px}
-  .skills-bar{padding:0 32px 60px}
-  .nav{padding:16px 32px}
+  .g3{grid-template-columns:1fr}
+  .section{padding:80px 5%}
+  .dgrid{grid-template-columns:repeat(6,1fr)}
+  .kpi{grid-column:span 3}
+  .tile-w4,.tile-w5,.tile-w6,.tile-w7,.tile-w8{grid-column:span 6}
+  .be-display{grid-template-columns:repeat(2,1fr)}
 }
-/* Tablet portrait & mobile */
 @media(max-width:767px){
-  .hero h1{font-size:36px}
-  .hero p{font-size:15px}
-  .hero{padding:0 20px}
-  .hero-inner{max-width:100%}
-  .g2,.g3{grid-template-columns:1fr}
-  .g4{grid-template-columns:1fr 1fr}
-  .nav-links{display:none;position:fixed;top:56px;left:0;right:0;background:rgba(7,11,18,0.97);flex-direction:column;padding:20px 24px;gap:16px;border-bottom:1px solid var(--border)}
-  .nav-links a{font-size:15px}
+  h1{font-size:38px;letter-spacing:-1.5px}h2{font-size:26px}
+  .nav{padding:14px 20px}.nav.scrolled{padding:12px 20px}
+  .nav-links{display:none;position:fixed;top:64px;left:0;right:0;background:var(--white);flex-direction:column;padding:24px;gap:16px;border-bottom:1px solid var(--border);box-shadow:0 8px 20px rgba(0,0,0,0.06)}
+  .nav-links.open{display:flex}
   .hamburger{display:block}
-  .tab-row{flex-wrap:nowrap}
-  .section{padding:48px 16px}
-  .skills-bar{padding:0 16px 48px}
-  .nav{padding:14px 20px}
-  .sec-title{font-size:26px}
-  .pt{font-size:20px}
-  .mc .v{font-size:22px}
-  .mc{padding:14px 10px}
-  .cb{padding:14px 16px}
-  .st{font-size:12px}
-  .st th{padding:8px 10px;font-size:10px}
-  .st td{padding:7px 10px}
-  .contact{padding:60px 16px 80px}
-  .ct-row{font-size:14px}
-  .ins{padding:10px 14px;font-size:12px}
-  .pd{font-size:14px}
+  .nav-cta{display:none}
+  .hero{padding:100px 20px 60px}
+  .hero p{font-size:16px}
+  .section{padding:60px 20px}
+  .skills-bar{padding:40px 20px 60px}
+  .g4{grid-template-columns:1fr 1fr}
+  .proj-head{padding:24px 22px}
+  .proj-title{font-size:22px}.proj-desc{font-size:15px}
+  .mc .v{font-size:24px}
+  .dash-launch{padding:26px 22px;gap:18px}
+  .dash-launch h3{font-size:20px}
+  .dash-launch p{font-size:14px}
+  .btn-launch{padding:13px 24px;font-size:14px;width:100%;justify-content:center}
+  .contact{padding:60px 20px}
+  .dash-overlay{padding:0}
+  .dash-app{border-radius:0;min-height:100vh}
+  .dgrid{grid-template-columns:repeat(2,1fr);padding:14px;gap:12px}
+  .kpi{grid-column:span 1;padding:16px 18px}
+  .tile-w4,.tile-w5,.tile-w6,.tile-w7,.tile-w8,.tile-w12{grid-column:span 2}
+  .kpi .v{font-size:22px}
+  .dtop{padding:12px 16px}.dttl .t1{font-size:14px}.dttl .t2{font-size:11px}
+  .dfilt{padding:12px 16px;gap:12px}
+  .chart-host{height:220px}.chart-host.tall{height:300px}
+  .be-display{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 <body>
 
 <nav class="nav" id="nav">
-  <div class="nav-logo" onclick="scrollTo('top')">Miraj<em>.</em>Sangani</div>
-  <div class="nav-links">
+  <div class="nav-logo" onclick="document.getElementById('top').scrollIntoView({behavior:'smooth'})">Miraj<em>.</em>Sangani</div>
+  <div class="nav-links" id="navLinks">
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
+    <a href="#contact" class="nav-cta">Contact Me</a>
   </div>
-  <button class="hamburger" onclick="document.querySelector('.nav-links').style.display=this.dataset.open?'none':'flex';this.dataset.open=this.dataset.open?'':'1'" aria-label="Menu">☰</button>
+  <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">☰</button>
 </nav>
 
 <section class="hero" id="top">
   <div class="hero-inner">
-    <div class="hero-label">Project Portfolio</div>
-    <h1>Miraj Sangani</h1>
-    <p>Data models, financial projections, and interactive dashboards — three projects that show how I turn complex data into clear business decisions.</p>
-    <a href="#projects" class="btn-primary">Explore Projects ↓</a>
+    <div class="hero-status"><span class="dot"></span>Open to Work · Canada</div>
+    <h1>Hi, I'm Miraj — I turn data into <span class="accent">clear business decisions</span></h1>
+    <p>Three interactive dashboards covering data analytics, financial modeling, and business strategy. Click around. Filter the data. See how the numbers move.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">Explore Projects →</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
   </div>
 </section>
 
-<!-- ═══ SKILLS BAR ═══ -->
 <div class="skills-bar fade-in">
+  <div class="label">Tools I Work With</div>
   <div class="pills">
-    <span class="pill pill-t">Power BI</span>
-    <span class="pill pill-t">Power Pivot</span>
-    <span class="pill pill-i">Financial Modeling</span>
-    <span class="pill pill-i">Cash Flow Forecasting</span>
-    <span class="pill pill-a">Market Analysis</span>
-    <span class="pill pill-r">DAX</span>
-    <span class="pill pill-t">Excel Advanced</span>
-    <span class="pill pill-a">NAICS Benchmarking</span>
-    <span class="pill pill-i">Data Visualization</span>
+    <span class="pill">Power BI</span>
+    <span class="pill">Power Pivot</span>
+    <span class="pill">Financial Modeling</span>
+    <span class="pill">Cash Flow Forecasting</span>
+    <span class="pill">Market Analysis</span>
+    <span class="pill">DAX</span>
+    <span class="pill">Excel Advanced</span>
+    <span class="pill">NAICS Benchmarking</span>
+    <span class="pill">Data Visualization</span>
   </div>
-  <span class="status-pill"><span class="status-dot"></span>Open to Work · Canada</span>
 </div>
 
-<div class="section fade-in" id="projects">
-  <div class="sec-label">Projects</div>
-  <div class="sec-title">Case Studies</div>
+<div class="section bg fade-in" id="projects">
+  <div class="section-inner">
+    <div class="sec-head">
+      <div class="section-title-wrap">Case Studies</div>
+      <h2>Selected Projects</h2>
+      <p>Three interactive dashboards. Each one filters, drills down, and recalculates in real time.</p>
+    </div>
 
-  <div class="tab-row" id="tabs">
-    <button class="ptab on" onclick="showP(0,this)"><span class="sub">Data Analytics</span>Dunder Mifflin — Sales Analytics</button>
-    <button class="ptab" onclick="showP(1,this)"><span class="sub">Financial Modeling</span>Chocolate Shop — Revenue Model</button>
-    <button class="ptab" onclick="showP(2,this)"><span class="sub">Business Strategy</span>Pawfect Pet Spa — Business Plan</button>
-  </div>
+    <div class="tab-row">
+      <button class="ptab on" onclick="showP(0,this)"><span class="sub">Data Analytics</span>Dunder Mifflin</button>
+      <button class="ptab" onclick="showP(1,this)"><span class="sub">Financial Modeling</span>Chocolate Shop</button>
+      <button class="ptab" onclick="showP(2,this)"><span class="sub">Business Strategy</span>Pawfect Pet Spa</button>
+    </div>
 
-  <!-- ═══ P1: DUNDER MIFFLIN ═══ -->
-  <div class="project active" id="p0">
-    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin-bottom:16px"><rect width="48" height="48" rx="10" fill="#0f172a"/><rect x="4" y="4" width="40" height="40" rx="7" stroke="#64ffda" stroke-width="1.2" fill="none"/><path d="M14 16h5v16h-5z" fill="#64ffda" opacity=".25"/><path d="M22 12h5v20h-5z" fill="#64ffda" opacity=".45"/><path d="M30 18h5v14h-5z" fill="#64ffda" opacity=".7"/><circle cx="16.5" cy="14" r="2" fill="#64ffda"/><circle cx="24.5" cy="10" r="2" fill="#64ffda"/><circle cx="32.5" cy="16" r="2" fill="#64ffda"/><line x1="16.5" y1="14" x2="24.5" y2="10" stroke="#64ffda" stroke-width="1.2"/><line x1="24.5" y1="10" x2="32.5" y2="16" stroke="#64ffda" stroke-width="1.2"/></svg>
-    <div class="pn">Project 01</div>
-    <div class="pt">Sales Performance Analysis — Dunder Mifflin Inc.</div>
-    <p class="pd">Built a star-schema data model and interactive dashboards to analyze 5 years of order data across 10 offices, 40 reps, and 3,500 clients. Identified underperformers, revenue patterns, and built a regression model to predict order revenue.</p>
-    <div style="margin-bottom:14px"><span class="tag tag-t">Power BI</span><span class="tag tag-t">Power Pivot</span><span class="tag tag-t">DAX</span><span class="tag tag-t">Star Schema</span><span class="tag tag-t">Regression Analysis</span></div>
-    <div class="g4" style="margin-bottom:16px">
-      <div class="mc"><div class="v" style="color:var(--teal)" data-count="74.7" data-pre="$" data-suf="M">$0M</div><div class="l">Total Revenue</div><div class="s">2015–2019</div></div>
-      <div class="mc"><div class="v" style="color:var(--teal)" data-count="67643" data-comma="1">0</div><div class="l">Records Analyzed</div><div class="s">Order line items</div></div>
-      <div class="mc"><div class="v" style="color:var(--teal)" data-count="15413" data-comma="1">0</div><div class="l">Unique Orders</div><div class="s">Across 50 states</div></div>
-      <div class="mc"><div class="v" style="color:var(--teal)" data-count="40">0</div><div class="l">Sales Reps</div><div class="s">Performance ranked</div></div>
-    </div>
-    <div class="g2" style="margin-bottom:16px">
-      <div class="cb"><h4>Revenue Trend — 5-Year Performance</h4><canvas id="c1a" height="140"></canvas></div>
-      <div class="cb"><h4>Revenue by Product Category</h4><canvas id="c1b" height="140"></canvas></div>
-    </div>
-    <div class="cb" style="margin-bottom:16px"><h4>Revenue-to-Salary Ratio — Top 5 vs Bottom 5</h4><canvas id="c1c" height="180"></canvas>
-      <div style="display:flex;gap:16px;justify-content:center;margin-top:6px"><span style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--dim)"><span style="width:8px;height:8px;border-radius:2px;background:var(--teal);display:inline-block"></span>Top 5 — High performers</span><span style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--dim)"><span style="width:8px;height:8px;border-radius:2px;background:var(--rose);display:inline-block"></span>Bottom 5 — Performance review</span></div>
-    </div>
-    <h3 style="font-size:14px;font-weight:700;margin-bottom:4px">Sales Rep Performance</h3>
-    <p style="font-size:11px;color:var(--dim);margin-bottom:10px">Click any column to sort · All 40 reps</p>
-    <div class="tw"><table class="st" id="t1"></table></div>
-    <h3 style="font-size:14px;font-weight:700;margin-bottom:4px">Top 10 Products by Revenue</h3>
-    <p style="font-size:11px;color:var(--dim);margin-bottom:10px">Click any column to sort</p>
-    <div class="tw"><table class="st" id="t2"></table></div>
-    <div class="pbi"><div style="font-size:24px;margin-bottom:4px">📊</div><div style="font-size:13px;font-weight:700;color:var(--indigo);margin-bottom:2px">Interactive Power BI Dashboard</div><p style="font-size:11px;color:var(--muted);max-width:340px;margin:0 auto">Will be embedded here once published to Power BI Service.</p><!-- REPLACE THIS DIV with: <iframe title="Dashboard" width="100%" height="500" src="YOUR_POWER_BI_EMBED_URL" frameborder="0" allowfullscreen></iframe> --></div>
-    <h3 style="font-size:14px;font-weight:700;margin-bottom:10px">Key Findings</h3>
-    <div class="ins"><strong>Performance Gap:</strong> 27% spread between top and bottom reps. Walton Stroup generates 30x his salary in revenue vs. Rikki Fleisher at 19x. The metric isn't revenue alone — it's revenue per salary dollar.</div>
-    <div class="ins"><strong>Revenue Distribution:</strong> Order totals are right-skewed. Mean exceeds median — a few large orders drive outsized revenue. Built a regression model to predict order revenue from item quantity.</div>
-    <div class="ins"><strong>Product Concentration:</strong> Specialty Paper drives 39% of revenue. Parchment Stationary Set alone generates $3.59M — more than entire sub-categories.</div>
-    <div class="ins"><strong>Predictive Model:</strong> Used the regression equation to forecast revenue at 900 units and reverse-solve for quantity at $25K — giving sales reps concrete data-driven targets.</div>
-    <div style="margin-top:20px"><div style="font-size:10px;font-weight:600;color:var(--dim);margin-bottom:8px;text-transform:uppercase;letter-spacing:1.5px">Download Source Files</div><div style="display:flex;gap:8px;flex-wrap:wrap">
-      <!-- Add href="files/Dunder_Mifflin_Data.xlsx" download to enable downloads -->
-   <a href="files/Dunder_Mifflin_Data.xlsx" download class="dl">📁 Source Data (.xlsx) <span class="ar">↓</span></a>
-<a href="files/Dunder_Mifflin_Analysis.xlsx" download class="dl">📊 Analysis Workbook (.xlsx) <span class="ar">↓</span></a>
-<a href="files/Dunder_Mifflin_Dashboard.pbix" download class="dl">📈 Power BI (.pbix) <span class="ar">↓</span></a>
-    </div></div>
-  </div>
+    <!-- ═══ P1: DUNDER MIFFLIN ═══ -->
+    <div class="project active" id="p0">
+      <div class="proj-head">
+        <div class="proj-num">Project 01 · Data Analytics</div>
+        <div class="proj-title">Sales Performance Analysis — Dunder Mifflin Inc.</div>
+        <p class="proj-desc">Built a star-schema data model and interactive dashboards to analyze 5 years of order data across 10 offices, 40 reps, and 3,500 clients. Identified underperformers, revenue patterns, and built a regression model to predict order revenue.</p>
+        <div><span class="tag tag-s">Power BI</span><span class="tag tag-s">Power Pivot</span><span class="tag tag-s">DAX</span><span class="tag tag-s">Star Schema</span><span class="tag tag-s">Regression</span></div>
+      </div>
 
-  <!-- ═══ P2: CHOCOLATE SHOP ═══ -->
-  <div class="project" id="p1">
-    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin-bottom:16px"><rect width="48" height="48" rx="10" fill="#0f172a"/><rect x="4" y="4" width="40" height="40" rx="7" stroke="#a78bfa" stroke-width="1.2" fill="none"/><rect x="12" y="28" width="7" height="10" rx="2" fill="#a78bfa" opacity=".35"/><rect x="21" y="18" width="7" height="20" rx="2" fill="#a78bfa" opacity=".55"/><rect x="30" y="22" width="7" height="16" rx="2" fill="#a78bfa" opacity=".8"/></svg>
-    <div class="pn">Project 02</div>
-    <div class="pt">Multi-Channel Revenue Model — The Chocolate Shop</div>
-    <p class="pd">Financial model for a chocolate manufacturing startup with three revenue channels (factory, tradeshow, preorder), each with different payment structures and seasonality patterns. Includes cash flow forecasting, inventory planning, and NAICS industry benchmarking.</p>
-    <div style="margin-bottom:14px"><span class="tag tag-i">Financial Modeling</span><span class="tag tag-i">Cash Flow Forecasting</span><span class="tag tag-i">Inventory & COGS</span><span class="tag tag-i">NAICS Benchmarking</span><span class="tag tag-i">Multi-Channel Revenue</span></div>
-    <div class="g4" style="margin-bottom:16px">
-      <div class="mc"><div class="v" style="color:var(--indigo)" data-count="325" data-pre="$" data-suf="K">$0K</div><div class="l">Year 1 Revenue</div><div class="s">3 channels</div></div>
-      <div class="mc"><div class="v" style="color:var(--indigo)" data-count="429" data-pre="$" data-suf="K">$0K</div><div class="l">Year 2 Revenue</div><div class="s">32% growth</div></div>
-      <div class="mc"><div class="v" style="color:var(--indigo)" data-count="42.2" data-suf="%">0%</div><div class="l">Gross Margin</div><div class="s">vs 58.5% industry</div></div>
-      <div class="mc"><div class="v" style="color:var(--indigo)" data-count="37.9" data-pre="$" data-suf="K">$0K</div><div class="l">Net Profit</div><div class="s">11.7% margin</div></div>
-    </div>
-    <div class="g2" style="margin-bottom:16px">
-      <div class="cb"><h4>Revenue by Channel</h4><canvas id="c2a" height="140"></canvas></div>
-      <div class="cb"><h4>Monthly Seasonality — Stacked Revenue</h4><canvas id="c2b" height="140"></canvas></div>
-    </div>
-    <h3 style="font-size:14px;font-weight:700;margin-bottom:4px">Monthly Revenue Breakdown</h3>
-    <p style="font-size:11px;color:var(--dim);margin-bottom:10px">Click any column to sort</p>
-    <div class="tw"><table class="st" id="t3"></table></div>
-    <h3 style="font-size:14px;font-weight:700;margin-bottom:10px">What Makes This Model Different</h3>
-    <div class="ins" style="border-color:var(--indigo)"><strong>Three Payment Structures:</strong> Factory: 70% cash / 30% credit. Tradeshows: 10% cash / 90% credit. Preorders: 65% credit card / 35% Net-30 invoicing. Each hits cash flow on different timelines.</div>
-    <div class="ins" style="border-color:var(--indigo)"><strong>Seasonal Staggering:</strong> Channels peak at different months — tradeshows spike Nov ($39K), factory peaks Dec ($12.9K), preorders peak Dec ($25.3K). This staggering was modeled into the cash flow forecast.</div>
-    <div class="ins" style="border-color:var(--indigo)"><strong>COGS Pressure:</strong> Material costs at 37.5% vs. industry 34.3%. Flagged as margin risk and modeled the breakeven impact.</div>
-    <div style="margin-top:20px"><div style="font-size:10px;font-weight:600;color:var(--dim);margin-bottom:8px;text-transform:uppercase;letter-spacing:1.5px">Download Source Files</div><a href="files/Chocolate_Shop_Model.xlsx" download class="dl">📊 Financial Model (.xlsx) <span class="ar">↓</span></a></div>
-  </div>
+      <div class="g4" style="margin-bottom:8px">
+        <div class="mc"><div class="v" data-count="74.7" data-pre="$" data-suf="M">$0M</div><div class="l">Total Revenue</div><div class="s">2015–2019</div></div>
+        <div class="mc p"><div class="v" data-count="67643" data-comma="1">0</div><div class="l">Records Analyzed</div><div class="s">Order line items</div></div>
+        <div class="mc a"><div class="v" data-count="15413" data-comma="1">0</div><div class="l">Unique Orders</div><div class="s">50 states</div></div>
+        <div class="mc"><div class="v" data-count="40">0</div><div class="l">Sales Reps</div><div class="s">Ranked & analyzed</div></div>
+      </div>
 
-  <!-- ═══ P3: PAWFECT ═══ -->
-  <div class="project" id="p2">
-    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin-bottom:16px"><rect width="48" height="48" rx="10" fill="#0f172a"/><rect x="4" y="4" width="40" height="40" rx="7" stroke="#fcd34d" stroke-width="1.2" fill="none"/><circle cx="18" cy="16" r="3" fill="#fcd34d" opacity=".45"/><circle cx="30" cy="16" r="3" fill="#fcd34d" opacity=".45"/><circle cx="14" cy="24" r="3" fill="#fcd34d" opacity=".45"/><circle cx="34" cy="24" r="3" fill="#fcd34d" opacity=".45"/><ellipse cx="24" cy="31" rx="7" ry="5.5" fill="#fcd34d" opacity=".65"/></svg>
-    <div class="pn">Project 03</div>
-    <div class="pt">Startup Strategy & Financial Plan — Pawfect Mobile Pet Spa</div>
-    <p class="pd">End-to-end business plan with market sizing, competitive analysis, 2-year financial projections, and risk modeling for a mobile pet grooming startup in the Kitchener-Waterloo region.</p>
-    <div style="margin-bottom:14px"><span class="tag tag-a">Market Sizing</span><span class="tag tag-a">Competitive Analysis</span><span class="tag tag-a">Financial Projections</span><span class="tag tag-a">PESTEL</span><span class="tag tag-a">Risk Modeling</span></div>
-    <div class="g4" style="margin-bottom:16px">
-      <div class="mc"><div class="v" style="color:var(--amber)" data-count="168" data-pre="$" data-suf="K">$0K</div><div class="l">Year 1 Revenue</div><div class="s">2 vans, 50% util.</div></div>
-      <div class="mc"><div class="v" style="color:var(--amber)" data-count="311" data-pre="$" data-suf="K">$0K</div><div class="l">Year 2 Revenue</div><div class="s">85% YoY growth</div></div>
-      <div class="mc"><div class="v" style="color:var(--amber)" data-count="162">0</div><div class="l">Breakeven</div><div class="s">Services/month</div></div>
-      <div class="mc"><div class="v" style="color:var(--amber)" data-count="26.2" data-suf="%">0%</div><div class="l">Y2 Net Margin</div><div class="s">vs 17.2% industry</div></div>
+      <div class="dash-launch g1">
+        <div class="di">📊</div>
+        <div class="dinfo">
+          <h3>Launch Sales Dashboard</h3>
+          <p>Cross-filter by year and office. Click any rep bar to drill into their office. Sort the rep table by any column. Six live visuals built on a star-schema model.</p>
+          <div class="dmeta">
+            <span>📈<b>6 visuals</b></span>
+            <span>🎛️<b>Year + office slicers</b></span>
+            <span>📅<b>2015–2019</b></span>
+            <span>🏢<b>10 offices</b></span>
+          </div>
+        </div>
+        <button class="btn-launch" onclick="showDash('dm')">Launch Dashboard <span class="arr">→</span></button>
+      </div>
+
+      <div style="margin-top:28px">
+        <div class="downloads-label">Download Source Files</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="files/Dunder_Mifflin_Data.xlsx" download class="dl">📁 Source Data (.xlsx) <span class="ar">↓</span></a>
+          <a href="files/Dunder_Mifflin_Analysis.xlsx" download class="dl">📊 Analysis Workbook (.xlsx) <span class="ar">↓</span></a>
+          <a href="files/Dunder_Mifflin_Dashboard.pbix" download class="dl">📈 Power BI (.pbix) <span class="ar">↓</span></a>
+        </div>
+      </div>
     </div>
-    <div class="g2" style="margin-bottom:16px">
-      <div class="cb"><h4>Cash Position — Year 1 vs Year 2</h4><canvas id="c3a" height="140"></canvas></div>
-      <div class="cb"><h4>Metrics vs Industry Benchmarks</h4><canvas id="c3b" height="140"></canvas></div>
+
+    <!-- ═══ P2: CHOCOLATE SHOP ═══ -->
+    <div class="project" id="p1">
+      <div class="proj-head">
+        <div class="proj-num" style="color:var(--primary)">Project 02 · Financial Modeling</div>
+        <div class="proj-title">Multi-Channel Revenue Model — The Chocolate Shop</div>
+        <p class="proj-desc">Financial model for a chocolate manufacturing startup with three revenue channels (factory, tradeshow, preorder), each with different payment structures and seasonality. Includes cash flow forecasting, inventory planning, and NAICS industry benchmarking.</p>
+        <div><span class="tag tag-p">Financial Modeling</span><span class="tag tag-p">Cash Flow Forecasting</span><span class="tag tag-p">Inventory & COGS</span><span class="tag tag-p">NAICS Benchmarking</span><span class="tag tag-p">Multi-Channel Revenue</span></div>
+      </div>
+
+      <div class="g4" style="margin-bottom:8px">
+        <div class="mc p"><div class="v" data-count="325" data-pre="$" data-suf="K">$0K</div><div class="l">Year 1 Revenue</div><div class="s">3 channels</div></div>
+        <div class="mc"><div class="v" data-count="429" data-pre="$" data-suf="K">$0K</div><div class="l">Year 2 Revenue</div><div class="s">32% growth</div></div>
+        <div class="mc a"><div class="v" data-count="42.2" data-suf="%">0%</div><div class="l">Gross Margin</div><div class="s">vs 58.5% industry</div></div>
+        <div class="mc p"><div class="v" data-count="37.9" data-pre="$" data-suf="K">$0K</div><div class="l">Net Profit</div><div class="s">11.7% margin</div></div>
+      </div>
+
+      <div class="dash-launch g2">
+        <div class="di">💰</div>
+        <div class="dinfo">
+          <h3>Launch Revenue Dashboard</h3>
+          <p>Filter by channel and quarter. See how the revenue mix shifts across factory, tradeshow, and preorder. Watch cumulative cash build over the year.</p>
+          <div class="dmeta">
+            <span>📊<b>4 visuals</b></span>
+            <span>🎛️<b>Channel + quarter slicers</b></span>
+            <span>📅<b>Year 1 monthly</b></span>
+            <span>💵<b>$325K modeled</b></span>
+          </div>
+        </div>
+        <button class="btn-launch" onclick="showDash('cs')">Launch Dashboard <span class="arr">→</span></button>
+      </div>
+
+      <div style="margin-top:28px">
+        <div class="downloads-label">Download Source Files</div>
+        <a href="files/Chocolate_Shop_Model.xlsx" download class="dl">📊 Financial Model (.xlsx) <span class="ar">↓</span></a>
+      </div>
     </div>
-    <h3 style="font-size:14px;font-weight:700;margin-bottom:4px">Competitive Analysis Matrix</h3>
-    <p style="font-size:11px;color:var(--dim);margin-bottom:10px">Your business highlighted · Click columns to sort</p>
-    <div class="tw"><table class="st" id="t4"></table></div>
-    <h3 style="font-size:14px;font-weight:700;margin-bottom:10px">Strategic Analysis</h3>
-    <div class="ins" style="border-color:var(--amber)"><strong>Market Gap:</strong> 29,700 pet-owning households with 0.15% mobile grooming penetration. No competitor owns senior pet care or eco-friendly positioning.</div>
-    <div class="ins" style="border-color:var(--amber)"><strong>Breakeven Math:</strong> $7,738/month fixed costs ÷ $47.60 contribution margin = 162 services/month. Achievable at 50% utilization with 2 vans doing 4 pets/day.</div>
-    <div class="ins" style="border-color:var(--amber)"><strong>Risk Framework:</strong> Van breakdown (100% revenue halt → $15K contingency), seasonal drop (30% winter decline → "Winter Wellness" package), shutdown trigger (revenue below 50% of expenses for 3 months).</div>
-    <div style="margin-top:20px"><div style="font-size:10px;font-weight:600;color:var(--dim);margin-bottom:8px;text-transform:uppercase;letter-spacing:1.5px">Download Source Files</div><div style="display:flex;gap:8px;flex-wrap:wrap"><a href="files/Pawfect_Business_Plan.pdf" download class="dl">📄 Business Plan (.pdf) <span class="ar">↓</span></a>
-<a href="files/Pawfect_Financial_Model.xlsx" download class="dl">📊 Financial Model (.xlsx) <span class="ar">↓</span></a></div></div>
+
+    <!-- ═══ P3: PAWFECT ═══ -->
+    <div class="project" id="p2">
+      <div class="proj-head">
+        <div class="proj-num" style="color:var(--amber)">Project 03 · Business Strategy</div>
+        <div class="proj-title">Startup Strategy & Financial Plan — Pawfect Mobile Pet Spa</div>
+        <p class="proj-desc">End-to-end business plan with market sizing, competitive analysis, 2-year financial projections, and risk modeling for a mobile pet grooming startup in the Kitchener-Waterloo region.</p>
+        <div><span class="tag tag-a">Market Sizing</span><span class="tag tag-a">Competitive Analysis</span><span class="tag tag-a">Financial Projections</span><span class="tag tag-a">PESTEL</span><span class="tag tag-a">Risk Modeling</span></div>
+      </div>
+
+      <div class="g4" style="margin-bottom:8px">
+        <div class="mc a"><div class="v" data-count="168" data-pre="$" data-suf="K">$0K</div><div class="l">Year 1 Revenue</div><div class="s">2 vans, 50% util.</div></div>
+        <div class="mc"><div class="v" data-count="311" data-pre="$" data-suf="K">$0K</div><div class="l">Year 2 Revenue</div><div class="s">85% YoY growth</div></div>
+        <div class="mc p"><div class="v" data-count="162">0</div><div class="l">Breakeven</div><div class="s">Services/month</div></div>
+        <div class="mc a"><div class="v" data-count="26.2" data-suf="%">0%</div><div class="l">Y2 Net Margin</div><div class="s">vs 17.2% industry</div></div>
+      </div>
+
+      <div class="dash-launch g3">
+        <div class="di">🐾</div>
+        <div class="dinfo">
+          <h3>Launch Strategy Dashboard</h3>
+          <p>Toggle between Year 1 and Year 2 projections. Sort the competitive matrix. <b>Drag the breakeven slider</b> to see how van utilization, contribution margin, and profitability change in real time.</p>
+          <div class="dmeta">
+            <span>📊<b>4 visuals</b></span>
+            <span>🎚️<b>Live breakeven calculator</b></span>
+            <span>📅<b>Y1 + Y2 cash flow</b></span>
+            <span>⚔️<b>5 competitors</b></span>
+          </div>
+        </div>
+        <button class="btn-launch" onclick="showDash('pp')">Launch Dashboard <span class="arr">→</span></button>
+      </div>
+
+      <div style="margin-top:28px">
+        <div class="downloads-label">Download Source Files</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="files/Pawfect_Business_Plan.pdf" download class="dl">📄 Business Plan (.pdf) <span class="ar">↓</span></a>
+          <a href="files/Pawfect_Financial_Model.xlsx" download class="dl">📊 Financial Model (.xlsx) <span class="ar">↓</span></a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="section fade-in" id="skills">
-  <div class="sec-label">Tools</div>
-  <div class="sec-title">What I Work With</div>
+  <div class="sec-head">
+    <div class="section-title-wrap">Capabilities</div>
+    <h2>What I Work With</h2>
+    <p>Hands-on with the tools and frameworks analysts actually use day-to-day.</p>
+  </div>
   <div class="g3">
-    <div class="sk"><h4 style="color:var(--teal)">Data & BI</h4><div class="sk-item">Microsoft Power BI</div><div class="sk-item">Power Pivot / Power Query</div><div class="sk-item">Advanced Excel (Pivots, What-If)</div><div class="sk-item">DAX Measures</div><div class="sk-item">Star Schema Data Modeling</div></div>
-    <div class="sk"><h4 style="color:var(--indigo)">Financial Analysis</h4><div class="sk-item">Income Statements & Balance Sheets</div><div class="sk-item">Cash Flow Forecasting</div><div class="sk-item">Breakeven & Sensitivity Analysis</div><div class="sk-item">Loan Amortization</div><div class="sk-item">NAICS Industry Benchmarking</div></div>
-    <div class="sk"><h4 style="color:var(--amber)">Business Analysis</h4><div class="sk-item">Market Sizing & TAM/SAM/SOM</div><div class="sk-item">Competitive Analysis Matrices</div><div class="sk-item">PESTEL & SWOT Frameworks</div><div class="sk-item">Customer Segmentation</div><div class="sk-item">Data-Driven Recommendations</div></div>
+    <div class="sk">
+      <div class="sk-icon s">📊</div>
+      <h4>Data & BI</h4>
+      <div class="sk-item">Microsoft Power BI</div>
+      <div class="sk-item">Power Pivot / Power Query</div>
+      <div class="sk-item">Advanced Excel (Pivots, What-If)</div>
+      <div class="sk-item">DAX Measures</div>
+      <div class="sk-item">Star Schema Data Modeling</div>
+    </div>
+    <div class="sk">
+      <div class="sk-icon p">💰</div>
+      <h4>Financial Analysis</h4>
+      <div class="sk-item">Income Statements & Balance Sheets</div>
+      <div class="sk-item">Cash Flow Forecasting</div>
+      <div class="sk-item">Breakeven & Sensitivity Analysis</div>
+      <div class="sk-item">Loan Amortization</div>
+      <div class="sk-item">NAICS Industry Benchmarking</div>
+    </div>
+    <div class="sk">
+      <div class="sk-icon a">📈</div>
+      <h4>Business Analysis</h4>
+      <div class="sk-item">Market Sizing & TAM/SAM/SOM</div>
+      <div class="sk-item">Competitive Analysis Matrices</div>
+      <div class="sk-item">PESTEL & SWOT Frameworks</div>
+      <div class="sk-item">Customer Segmentation</div>
+      <div class="sk-item">Data-Driven Recommendations</div>
+    </div>
   </div>
 </div>
 
 <div class="contact fade-in" id="contact">
-  <div class="sec-label">Contact</div>
-  <h2 style="font-family:var(--display);font-size:26px;font-weight:700;margin-bottom:10px">Open to analyst roles</h2>
-  <p style="color:var(--dim);font-size:13px;margin-bottom:6px;font-weight:500">Business Analyst · Data Analyst · Financial Analyst</p>
-  <p style="color:var(--muted);font-size:13px;margin-bottom:28px">Available for full-time opportunities in Canada</p>
-  <div style="margin-bottom:28px">
-    <div class="ct-row"><span class="lb">Email</span><a href="mailto:mirajsanganiwork@gmail.com">mirajsanganiwork@gmail.com</a></div>
-    <div class="ct-row"><span class="lb">Phone</span><a href="tel:+12262015159">+1 (226) 201-5159</a></div>
-    <div class="ct-row"><span class="lb">LinkedIn</span><a href="https://linkedin.com/in/mirajsangani" target="_blank" rel="noopener">linkedin.com/in/mirajsangani</a></div>
+  <div class="contact-inner">
+    <div class="section-title-wrap">Get In Touch</div>
+    <h2>Open to analyst roles</h2>
+    <p class="role">Business Analyst · Data Analyst · Financial Analyst</p>
+    <p class="avail">Available for full-time opportunities in Canada</p>
+    <div class="ct-list">
+      <div class="ct-row"><span class="lb">Email</span><a href="mailto:mirajsanganiwork@gmail.com">mirajsanganiwork@gmail.com</a></div>
+      <div class="ct-row"><span class="lb">Phone</span><a href="tel:+12262015159">+1 (226) 201-5159</a></div>
+      <div class="ct-row"><span class="lb">LinkedIn</span><a href="https://linkedin.com/in/mirajsangani" target="_blank" rel="noopener">linkedin.com/in/mirajsangani</a></div>
+    </div>
+    <div class="contact-cta">
+      <a href="mailto:mirajsanganiwork@gmail.com" class="btn btn-primary">Email Me</a>
+      <a href="https://linkedin.com/in/mirajsangani" class="btn btn-outline" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
   </div>
-  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-    <a href="mailto:mirajsanganiwork@gmail.com" class="btn-primary" style="text-decoration:none">Email Me</a>
-    <a href="https://linkedin.com/in/mirajsangani" class="btn-outline" target="_blank" rel="noopener" style="text-decoration:none">LinkedIn</a>
+</div>
+
+<div class="footer">© 2026 Miraj Sangani · Built with HTML, CSS, and Chart.js</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     DASHBOARD 1 — DUNDER MIFFLIN (DM)
+     ═══════════════════════════════════════════════════════ -->
+<div class="dash-overlay" id="dmOverlay" role="dialog" aria-modal="true">
+  <div class="dash-app">
+    <div class="dtop">
+      <div class="dlogo g1">DM</div>
+      <div class="dttl">
+        <div class="t1">Dunder Mifflin — Sales Performance Report</div>
+        <div class="t2">Star-schema data model · Live cross-filtering · By Miraj Sangani</div>
+      </div>
+      <span class="dpill"><span class="pdot"></span>Live</span>
+      <button class="dclose" onclick="closeDash('dm')" aria-label="Close">✕</button>
+    </div>
+
+    <div class="dfilt">
+      <div class="fgroup">
+        <span class="flab">Year</span>
+        <button class="fchip active" data-dm-year="all">All</button>
+        <button class="fchip" data-dm-year="2015">2015</button>
+        <button class="fchip" data-dm-year="2016">2016</button>
+        <button class="fchip" data-dm-year="2017">2017</button>
+        <button class="fchip" data-dm-year="2018">2018</button>
+        <button class="fchip" data-dm-year="2019">2019</button>
+      </div>
+      <div class="fgroup">
+        <span class="flab">Office</span>
+        <div id="dmOfficeFilters" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+      </div>
+      <button class="freset" onclick="resetDmFilters()">Reset filters</button>
+    </div>
+
+    <div class="dgrid">
+      <div class="tile kpi k1"><div class="accent"></div><div class="lbl">Total Revenue</div><div class="v" id="dmKRev">$74.7M</div><div class="delta up" id="dmKRevD">Across 5 years</div></div>
+      <div class="tile kpi k2"><div class="accent"></div><div class="lbl">Total Orders</div><div class="v" id="dmKOrd">67K</div><div class="delta up" id="dmKOrdD">Line items</div></div>
+      <div class="tile kpi k3"><div class="accent"></div><div class="lbl">Avg Rev / Salary</div><div class="v" id="dmKRatio">24.3x</div><div class="delta up" id="dmKRatioD">Baseline</div></div>
+      <div class="tile kpi k4"><div class="accent"></div><div class="lbl">Active Reps</div><div class="v" id="dmKReps">40</div><div class="delta" id="dmKRepsD">of 40 total</div></div>
+
+      <div class="tile tile-w8"><h5>Revenue Over Time <span class="sub" id="dmTrendSub">Yearly · all offices</span></h5><div class="chart-host"><canvas id="dmTrend"></canvas></div></div>
+      <div class="tile tile-w4"><h5>Revenue by Category</h5><div class="chart-host"><canvas id="dmCat"></canvas></div></div>
+      <div class="tile tile-w7"><h5>Top Reps — Rev/Salary Ratio <span class="sub">Click a bar to filter their office</span></h5><div class="chart-host tall"><canvas id="dmReps"></canvas></div></div>
+      <div class="tile tile-w5"><h5>Top Products <span class="sub">By total revenue</span></h5><div class="prod-list" id="dmProds"></div></div>
+      <div class="tile tile-w12"><h5>Sales Rep Detail <span class="sub" id="dmTblSub">Click columns to sort</span></h5><div class="tbl-scroll"><table class="dtbl" id="dmTbl"></table></div></div>
+    </div>
+
+    <div class="dfoot"><div class="left"><span class="badge">★ MIRAJ.SANGANI</span><span>Data: 5 years · 40 reps · 67K records</span></div><div>HTML · CSS · Chart.js</div></div>
   </div>
-  <div style="color:rgba(148,163,184,.15);font-size:10px;margin-top:60px">© 2026 Miraj Sangani</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     DASHBOARD 2 — CHOCOLATE SHOP (CS)
+     ═══════════════════════════════════════════════════════ -->
+<div class="dash-overlay" id="csOverlay" role="dialog" aria-modal="true">
+  <div class="dash-app">
+    <div class="dtop">
+      <div class="dlogo g2">CS</div>
+      <div class="dttl">
+        <div class="t1">Chocolate Shop — Revenue Model Dashboard</div>
+        <div class="t2">Multi-channel financial model · Year 1 monthly · By Miraj Sangani</div>
+      </div>
+      <span class="dpill"><span class="pdot"></span>Live</span>
+      <button class="dclose" onclick="closeDash('cs')" aria-label="Close">✕</button>
+    </div>
+
+    <div class="dfilt">
+      <div class="fgroup">
+        <span class="flab">Channel</span>
+        <button class="fchip green active" data-cs-channel="factory">Factory</button>
+        <button class="fchip green active" data-cs-channel="tradeshow">Tradeshow</button>
+        <button class="fchip green active" data-cs-channel="preorder">Preorder</button>
+      </div>
+      <div class="fgroup">
+        <span class="flab">Quarter</span>
+        <button class="fchip active" data-cs-q="all">All</button>
+        <button class="fchip" data-cs-q="1">Q1</button>
+        <button class="fchip" data-cs-q="2">Q2</button>
+        <button class="fchip" data-cs-q="3">Q3</button>
+        <button class="fchip" data-cs-q="4">Q4</button>
+      </div>
+      <button class="freset" onclick="resetCsFilters()">Reset filters</button>
+    </div>
+
+    <div class="dgrid">
+      <div class="tile kpi k2"><div class="accent"></div><div class="lbl">Filtered Revenue</div><div class="v" id="csKRev">$325K</div><div class="delta up" id="csKRevD">All channels</div></div>
+      <div class="tile kpi k1"><div class="accent"></div><div class="lbl">Best Month</div><div class="v" id="csKBest">Nov</div><div class="delta" id="csKBestD">$69K total</div></div>
+      <div class="tile kpi k3"><div class="accent"></div><div class="lbl">Avg Monthly</div><div class="v" id="csKAvg">$27K</div><div class="delta" id="csKAvgD">12 months</div></div>
+      <div class="tile kpi k4"><div class="accent"></div><div class="lbl">Channel Leader</div><div class="v" id="csKLead" style="font-size:24px">Tradeshow</div><div class="delta" id="csKLeadD">48% share</div></div>
+
+      <div class="tile tile-w8"><h5>Monthly Revenue — Stacked by Channel <span class="sub" id="csStackSub">All channels · full year</span></h5><div class="chart-host"><canvas id="csStack"></canvas></div></div>
+      <div class="tile tile-w4"><h5>Channel Mix</h5><div class="chart-host"><canvas id="csMix"></canvas></div></div>
+      <div class="tile tile-w12"><h5>Cumulative Revenue Build <span class="sub">Year 1 cash position over time</span></h5><div class="chart-host"><canvas id="csCum"></canvas></div></div>
+      <div class="tile tile-w12"><h5>Monthly Detail <span class="sub" id="csTblSub">Click columns to sort</span></h5><div class="tbl-scroll"><table class="dtbl" id="csTbl"></table></div></div>
+    </div>
+
+    <div class="dfoot"><div class="left"><span class="badge">★ MIRAJ.SANGANI</span><span>3 channels · 12 months · $325K Y1 modeled</span></div><div>HTML · CSS · Chart.js</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     DASHBOARD 3 — PAWFECT (PP)
+     ═══════════════════════════════════════════════════════ -->
+<div class="dash-overlay" id="ppOverlay" role="dialog" aria-modal="true">
+  <div class="dash-app">
+    <div class="dtop">
+      <div class="dlogo g3">PP</div>
+      <div class="dttl">
+        <div class="t1">Pawfect Mobile Pet Spa — Strategy & Financial Dashboard</div>
+        <div class="t2">Market analysis · 2-year projections · Live breakeven calculator · By Miraj Sangani</div>
+      </div>
+      <span class="dpill"><span class="pdot"></span>Live</span>
+      <button class="dclose" onclick="closeDash('pp')" aria-label="Close">✕</button>
+    </div>
+
+    <div class="dfilt">
+      <div class="fgroup">
+        <span class="flab">Year View</span>
+        <button class="fchip amber active" data-pp-year="both">Both Years</button>
+        <button class="fchip amber" data-pp-year="y1">Year 1 Only</button>
+        <button class="fchip amber" data-pp-year="y2">Year 2 Only</button>
+      </div>
+      <button class="freset" onclick="resetPpFilters()">Reset filters</button>
+    </div>
+
+    <div class="dgrid">
+      <div class="tile kpi k3"><div class="accent"></div><div class="lbl">Total Revenue</div><div class="v" id="ppKRev">$479K</div><div class="delta up" id="ppKRevD">Y1 + Y2 combined</div></div>
+      <div class="tile kpi k2"><div class="accent"></div><div class="lbl">Net Margin</div><div class="v" id="ppKMar">17.8%</div><div class="delta up" id="ppKMarD">Avg of both years</div></div>
+      <div class="tile kpi k1"><div class="accent"></div><div class="lbl">Breakeven</div><div class="v" id="ppKBE">162</div><div class="delta" id="ppKBED">Services/month</div></div>
+      <div class="tile kpi k4"><div class="accent"></div><div class="lbl">Market Penetration</div><div class="v" id="ppKMP">0.15%</div><div class="delta" id="ppKMPD">29,700 households</div></div>
+
+      <div class="tile tile-w7"><h5>Monthly Cash Position <span class="sub" id="ppCashSub">Year 1 + Year 2</span></h5><div class="chart-host tall"><canvas id="ppCash"></canvas></div></div>
+      <div class="tile tile-w5">
+        <h5>Live Breakeven Calculator <span class="sub">Drag the slider</span></h5>
+        <div class="be-calc">
+          <div class="be-slider-wrap">
+            <div class="be-slider-label"><span>Services / month: <b id="beVal">175</b></span><span>Capacity: 352</span></div>
+            <input type="range" min="50" max="320" value="175" step="1" class="be-slider" id="beSlider">
+            <div class="be-meter"><div class="be-meter-fill" id="beFill"></div><div class="be-meter-marker"></div></div>
+          </div>
+          <div class="be-display">
+            <div class="be-cell"><div class="l">Monthly Revenue</div><div class="v" id="beRev">$12,250</div></div>
+            <div class="be-cell"><div class="l">Contribution</div><div class="v" id="beContrib">$8,330</div></div>
+            <div class="be-cell" id="beAboveCell"><div class="l">Above Breakeven</div><div class="v" id="beAbove">+13</div></div>
+            <div class="be-cell"><div class="l">Van Utilization</div><div class="v" id="beUtil">49.7%</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tile tile-w6"><h5>Margins vs Industry Benchmark</h5><div class="chart-host"><canvas id="ppMar"></canvas></div></div>
+      <div class="tile tile-w6"><h5>Quarterly Revenue Distribution <span class="sub" id="ppQSub">Both years</span></h5><div class="chart-host"><canvas id="ppQuart"></canvas></div></div>
+      <div class="tile tile-w12"><h5>Competitive Analysis Matrix <span class="sub">Pawfect highlighted · click columns to sort</span></h5><div class="tbl-scroll"><table class="dtbl" id="ppTbl"></table></div></div>
+    </div>
+
+    <div class="dfoot"><div class="left"><span class="badge">★ MIRAJ.SANGANI</span><span>2-year projection · 5 competitors · live calculator</span></div><div>HTML · CSS · Chart.js</div></div>
+  </div>
 </div>
 
 <script>
@@ -365,58 +713,466 @@ const R=[["Walton Stroup","Nashua, NH",1820160,91649,60674,30.0],["Bo Kingery","
 const P=[["Parchment Stationary Set (100)","Specialty Paper","Other",3587402,59800],["Tru-Block Laser Shipping Labels","Labels","Mailing/Shipping",3258832,61499],["Strathmore Legal Cardstock (50)","Specialty Paper","Cardstock",3023630,59532],["Plain Manilla Shipping Tags","Labels","Tags & Seals",2972020,61930],["Easy-Peel Mailing Labels 3000pk","Labels","Address",2553827,60246],["Extra Heavy Stiff Cardstock","Specialty Paper","Cardstock",2505611,58556],["Vellum Bristol Cardstock Ivory","Specialty Paper","Cardstock",2332081,63389],["Matte Cardstock Black (50)","Specialty Paper","Cardstock",2160603,58728],["Vellum Bristol Cardstock White","Specialty Paper","Cardstock",2118441,57582],["Cardstock Pastel Multi-Color","Specialty Paper","Cardstock",1934432,60927]];
 const CM=[["Jan",1170,0,0],["Feb",2340,10920,5746],["Mar",2340,6240,7404],["Apr",2925,7800,5912],["May",1170,0,4807],["Jun",2925,0,3702],["Jul",4680,7800,3315],["Aug",4680,15600,2597],["Sep",5850,20280,7238],["Oct",7020,29640,14973],["Nov",10530,39000,19835],["Dec",12870,18720,25305]];
 const CP=[["Pawfect Grooming","From $65","KWC","Full Equipment","★★★★★","★★★★",1],["Mobile DogSpaw","From $70","KWC + GTA","Standard","★★★","★★★★★",0],["Touch of Love","From $65","KWC","Full Equipment","★★★★★","★★★★★",0],["Furry Bliss","From $80","KWC + Guelph","Modern","★★★","★★★★",0],["Precious Pawz","Varies","York Region","Premium","★★★★","★★★",0]];
+const PP_Y1=[12007,11373,14756,19159,26306,28107,26527,25636,29493,34465,30881,21901];
+const PP_Y2=[1500,1500,8056,22542,42410,51715,54362,58363,71692,87225,85923,73977];
+const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-/* ═══ NAV SCROLL ═══ */
+/* ═══ THEME COLORS ═══ */
+const TC={primary:'#535da1',secondary:'#14B789',amber:'#D4A017',red:'#e74c3c',muted:'#717275',grid:'#e9eaeb',primaryLight:'rgba(83,93,161,0.12)',secondaryLight:'rgba(20,183,137,0.12)',amberLight:'rgba(212,160,23,0.12)'};
+
+/* ═══ NAV / FADE / COUNTER ═══ */
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>40));
-
-/* ═══ FADE IN ═══ */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')}),{threshold:.05});
 document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
-
-/* ═══ COUNTER ═══ */
-const cio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!e.target.dataset.done){e.target.dataset.done='1';const end=parseFloat(e.target.dataset.count),pre=e.target.dataset.pre||'',suf=e.target.dataset.suf||'',comma=e.target.dataset.comma,t0=performance.now(),dur=1400;(function tick(){const p=Math.min((performance.now()-t0)/dur,1),ease=1-Math.pow(1-p,3),v=ease*end;e.target.textContent=pre+(comma?Math.floor(v).toLocaleString():(end%1?v.toFixed(1):Math.floor(v).toString()))+suf;if(p<1)requestAnimationFrame(tick)})()}}),{threshold:.3});
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting&&!e.target.dataset.done){
+    e.target.dataset.done='1';
+    const end=parseFloat(e.target.dataset.count),pre=e.target.dataset.pre||'',suf=e.target.dataset.suf||'',comma=e.target.dataset.comma,t0=performance.now(),dur=1400;
+    (function tick(){
+      const p=Math.min((performance.now()-t0)/dur,1),ease=1-Math.pow(1-p,3),v=ease*end;
+      e.target.textContent=pre+(comma?Math.floor(v).toLocaleString():(end%1?v.toFixed(1):Math.floor(v).toString()))+suf;
+      if(p<1)requestAnimationFrame(tick);
+    })();
+  }
+}),{threshold:.3});
 document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
 
 /* ═══ TABS ═══ */
-function showP(i,btn){document.querySelectorAll('.project').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('on'));document.getElementById('p'+i).classList.add('active');btn.classList.add('on')}
-
-/* ═══ SORTABLE TABLE ═══ */
-function mkT(id,cols,data,hlIdx){
-  const tbl=document.getElementById(id);let sc=null,sd='desc';
-  function render(){
-    let d=[...data];
-    if(sc!==null)d.sort((a,b)=>{const av=a[sc],bv=b[sc];if(typeof av==='number')return sd==='asc'?av-bv:bv-av;return sd==='asc'?String(av).localeCompare(String(bv)):String(bv).localeCompare(String(av))});
-    let h='<thead><tr>';cols.forEach((c,i)=>h+=`<th class="${sc===i?'sorted':''}" style="text-align:${c.a||'left'}" onclick="window._s${id}(${i})">${c.l}${sc===i?(sd==='asc'?' ↑':' ↓'):''}</th>`);
-    h+='</tr></thead><tbody>';d.forEach(row=>{const hl=hlIdx!==undefined&&row[hlIdx];h+=`<tr${hl?' class="hl"':''}>`;cols.forEach((c,ci)=>h+=`<td style="text-align:${c.a||'left'}">${c.f?c.f(row[ci]):row[ci]}</td>`);h+='</tr>'});
-    h+='</tbody>';tbl.innerHTML=h;
-  }
-  window['_s'+id]=i=>{if(sc===i)sd=sd==='asc'?'desc':'asc';else{sc=i;sd='desc'}render()};render();
+function showP(i,btn){
+  document.querySelectorAll('.project').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('p'+i).classList.add('active');
+  btn.classList.add('on');
 }
-const $=v=>'$'+v.toLocaleString();const xr=v=>v.toFixed(1)+'x';const cm=v=>v.toLocaleString();
-mkT('t1',[{l:'Name'},{l:'Office'},{l:'Revenue',a:'right',f:$},{l:'Qty',a:'right',f:cm},{l:'Salary',a:'right',f:$},{l:'Rev/Salary',a:'right',f:xr}],R);
-mkT('t2',[{l:'Product'},{l:'Category'},{l:'Sub-Category'},{l:'Revenue',a:'right',f:$},{l:'Qty',a:'right',f:cm}],P);
-mkT('t3',[{l:'Month'},{l:'Factory',a:'right',f:$},{l:'Tradeshow',a:'right',f:$},{l:'Preorder',a:'right',f:$},{l:'Total',a:'right',f:v=>'$'+(v).toLocaleString()}],CM.map(r=>[r[0],r[1],r[2],r[3],r[1]+r[2]+r[3]]));
-mkT('t4',[{l:'Company'},{l:'Price'},{l:'Coverage'},{l:'Van Equipment'},{l:'Digital'},{l:'Reputation'}],CP,6);
 
-/* ═══ CHARTS ═══ */
-Chart.defaults.color='#4a5568';Chart.defaults.borderColor='rgba(148,163,184,0.05)';Chart.defaults.font.family="'Outfit',sans-serif";Chart.defaults.font.size=11;Chart.defaults.plugins.legend.display=false;
-const ttip={backgroundColor:'rgba(7,11,18,0.95)',borderColor:'rgba(100,255,218,0.2)',borderWidth:1,titleFont:{family:"'Outfit'",size:12},bodyFont:{family:"'Outfit'",size:12},padding:10,cornerRadius:6};
+/* ═══ CHART.JS DEFAULTS ═══ */
+Chart.defaults.color=TC.muted;
+Chart.defaults.borderColor=TC.grid;
+Chart.defaults.font.family="'DM Sans',sans-serif";
+Chart.defaults.font.size=11;
+Chart.defaults.plugins.legend.display=false;
+const ttip={backgroundColor:'#fff',titleColor:'#000',bodyColor:'#3a3a45',borderColor:TC.grid,borderWidth:1,titleFont:{family:"'DM Sans'",size:12,weight:700},bodyFont:{family:"'DM Sans'",size:12},padding:12,cornerRadius:8,displayColors:true,boxPadding:4};
 
-new Chart(document.getElementById('c1a'),{type:'line',data:{labels:['2015','2016','2017','2018','2019'],datasets:[{data:[15526603,16268062,13694952,15152611,14067776],borderColor:'#64ffda',backgroundColor:'rgba(100,255,218,0.06)',fill:true,tension:.35,borderWidth:2,pointRadius:4,pointBackgroundColor:'#64ffda',pointBorderWidth:0}]},options:{scales:{y:{ticks:{callback:v=>'$'+(v/1e6).toFixed(0)+'M'}}},plugins:{tooltip:{...ttip,callbacks:{label:c=>'Revenue: $'+(c.raw/1e6).toFixed(1)+'M'}}}}});
+/* ═══════════════════════════════════════════════════════
+   GENERIC MODAL OPEN / CLOSE
+   ═══════════════════════════════════════════════════════ */
+const DASH_BUILDERS={dm:buildDmDashboard,cs:buildCsDashboard,pp:buildPpDashboard};
+const DASH_BUILT={dm:false,cs:false,pp:false};
+function showDash(id){
+  const el=document.getElementById(id+'Overlay');
+  el.classList.add('on');
+  document.body.style.overflow='hidden';
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      setTimeout(()=>{
+        if(!DASH_BUILT[id]){DASH_BUILDERS[id]();DASH_BUILT[id]=true;}
+        if(id==='dm')renderDm();
+        if(id==='cs')renderCs();
+        if(id==='pp')renderPp();
+      },220);
+    });
+  });
+}
+function closeDash(id){
+  document.getElementById(id+'Overlay').classList.remove('on');
+  document.body.style.overflow='';
+}
+['dm','cs','pp'].forEach(id=>{
+  const overlay=document.getElementById(id+'Overlay');
+  overlay.addEventListener('click',e=>{if(e.target===overlay)closeDash(id)});
+});
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape')return;
+  ['dm','cs','pp'].forEach(id=>{if(document.getElementById(id+'Overlay').classList.contains('on'))closeDash(id)});
+});
 
-new Chart(document.getElementById('c1b'),{type:'doughnut',data:{labels:['Specialty Paper','Labels','Non-Printing','Printer & Copy'],datasets:[{data:[29032324,20349072,13034691,12293917],backgroundColor:['#64ffda','#a78bfa','#fcd34d','#fb7185'],borderWidth:0,hoverOffset:6}]},options:{cutout:'62%',plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:8,padding:10,font:{size:10},color:'#8892b0'}},tooltip:{...ttip,callbacks:{label:c=>{const t=c.dataset.data.reduce((a,b)=>a+b,0);return c.label+': $'+(c.raw/1e6).toFixed(1)+'M ('+Math.round(c.raw/t*100)+'%)'}}}}}});
+/* ═══════════════════════════════════════════════════════
+   DASHBOARD 1 — DUNDER MIFFLIN
+   ═══════════════════════════════════════════════════════ */
+const YEAR_REV={2015:15526603,2016:16268062,2017:13694952,2018:15152611,2019:14067776};
+const YEAR_TOTAL=Object.values(YEAR_REV).reduce((a,b)=>a+b,0);
+const YEAR_SHARE=Object.fromEntries(Object.entries(YEAR_REV).map(([y,v])=>[y,v/YEAR_TOTAL]));
+function sn(s,o){let x=Math.sin(s*9999+o*31)*10000;return (x-Math.floor(x))*0.3-0.15;}
+const REP_YEAR=R.map((rep,i)=>{const t=rep[2];const raw={};let sum=0;for(const y of Object.keys(YEAR_REV)){const n=1+sn(i,parseInt(y));raw[y]=t*YEAR_SHARE[y]*n;sum+=raw[y];}const adj={};for(const y of Object.keys(raw))adj[y]=Math.round(raw[y]*(t/sum));return adj;});
+const REP_YEAR_QTY=R.map((rep,i)=>{const out={};let sum=0;for(const y of Object.keys(YEAR_REV)){const n=1+sn(i+1000,parseInt(y));out[y]=rep[3]*YEAR_SHARE[y]*n;sum+=out[y];}const adj={};for(const y of Object.keys(out))adj[y]=Math.round(out[y]*(rep[3]/sum));return adj;});
+const DM_OFFICES=[...new Set(R.map(r=>r[1]))].sort();
+let dmF={year:'all',offices:new Set()};
+let dmTBL={col:'rev',dir:'desc'};
+let dmCharts={};
 
-const tb=[...R].sort((a,b)=>b[5]-a[5]);const t5=tb.slice(0,5);const b5=tb.slice(-5).reverse();const rb=[...t5,...b5];
-new Chart(document.getElementById('c1c'),{type:'bar',data:{labels:rb.map(r=>r[0]),datasets:[{data:rb.map(r=>r[5]),backgroundColor:rb.map((_,i)=>i<5?'#64ffda':'#fb7185'),borderRadius:3,barThickness:16}]},options:{indexAxis:'y',scales:{x:{min:16,max:33,ticks:{callback:v=>v+'x'}},y:{ticks:{font:{size:11},color:'#8892b0'}}},plugins:{tooltip:{...ttip,callbacks:{label:c=>c.raw.toFixed(1)+'x revenue per salary dollar'}}}}});
+(function setupDmOfficeChips(){
+  const c=document.getElementById('dmOfficeFilters');
+  c.innerHTML=DM_OFFICES.map(o=>`<button class="fchip green" data-dm-office="${o}">${o.split(',')[0]}</button>`).join('');
+  c.querySelectorAll('.fchip').forEach(btn=>btn.addEventListener('click',()=>{
+    const o=btn.dataset.dmOffice;
+    if(dmF.offices.has(o)){dmF.offices.delete(o);btn.classList.remove('active');}
+    else{dmF.offices.add(o);btn.classList.add('active');}
+    if(DASH_BUILT.dm)renderDm();
+  }));
+})();
+document.querySelectorAll('.fchip[data-dm-year]').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.fchip[data-dm-year]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  dmF.year=btn.dataset.dmYear;
+  if(DASH_BUILT.dm)renderDm();
+}));
+function resetDmFilters(){
+  dmF={year:'all',offices:new Set()};
+  document.querySelectorAll('.fchip[data-dm-year]').forEach(b=>b.classList.toggle('active',b.dataset.dmYear==='all'));
+  document.querySelectorAll('#dmOfficeFilters .fchip').forEach(b=>b.classList.remove('active'));
+  renderDm();
+}
+function getDmFiltered(){
+  const fil=R.map((rep,i)=>{
+    if(dmF.offices.size&&!dmF.offices.has(rep[1]))return null;
+    let rev,qty;
+    if(dmF.year==='all'){rev=rep[2];qty=rep[3];}
+    else{rev=REP_YEAR[i][dmF.year];qty=REP_YEAR_QTY[i][dmF.year];}
+    return {name:rep[0],office:rep[1],rev,qty,salary:rep[4],ratio:rev/rep[4],idx:i};
+  }).filter(Boolean);
+  const tR=fil.reduce((s,r)=>s+r.rev,0);
+  const tO=fil.reduce((s,r)=>s+r.qty,0);
+  const tS=fil.reduce((s,r)=>s+r.salary,0);
+  return {reps:fil,totalRev:tR,totalOrders:tO,avgRatio:tS?tR/tS:0};
+}
+function buildDmDashboard(){
+  const baseScales={x:{grid:{display:false},ticks:{color:TC.muted,font:{family:"'DM Sans'",size:11}}},y:{grid:{color:TC.grid},ticks:{color:TC.muted,font:{family:"'DM Sans'",size:11}}}};
 
-new Chart(document.getElementById('c2a'),{type:'bar',data:{labels:['Factory','Tradeshow','Preorder'],datasets:[{data:[58500,156000,110500],backgroundColor:'#a78bfa',borderRadius:5,barThickness:36}]},options:{scales:{y:{ticks:{callback:v=>'$'+(v/1e3).toFixed(0)+'K'}}},plugins:{tooltip:{...ttip,callbacks:{label:c=>'Revenue: $'+c.raw.toLocaleString()}}}}});
+  dmCharts.trend=new Chart(document.getElementById('dmTrend'),{
+    type:'line',
+    data:{labels:['2015','2016','2017','2018','2019'],datasets:[{data:[],borderColor:TC.primary,backgroundColor:TC.primaryLight,fill:true,tension:.35,borderWidth:3,pointRadius:6,pointBackgroundColor:TC.primary,pointBorderColor:'#fff',pointBorderWidth:2,pointHoverRadius:8}]},
+    options:{maintainAspectRatio:false,responsive:true,plugins:{legend:{display:false},tooltip:Object.assign({},ttip,{callbacks:{label:c=>'Revenue: $'+(c.raw/1e6).toFixed(2)+'M'}})},scales:{x:baseScales.x,y:{...baseScales.y,ticks:{...baseScales.y.ticks,callback:v=>'$'+(v/1e6).toFixed(1)+'M'}}}}
+  });
 
-new Chart(document.getElementById('c2b'),{type:'bar',data:{labels:CM.map(m=>m[0]),datasets:[{label:'Factory',data:CM.map(m=>m[1]),backgroundColor:'rgba(100,255,218,0.55)',borderRadius:2},{label:'Tradeshow',data:CM.map(m=>m[2]),backgroundColor:'rgba(167,139,250,0.55)',borderRadius:2},{label:'Preorder',data:CM.map(m=>m[3]),backgroundColor:'rgba(252,211,77,0.55)',borderRadius:2}]},options:{scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:v=>'$'+(v/1e3).toFixed(0)+'K'}}},plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:8,padding:10,font:{size:10},color:'#8892b0'}},tooltip:{...ttip,mode:'index',callbacks:{label:c=>c.dataset.label+': $'+c.raw.toLocaleString()}}}}});
+  const dmCatTooltip=Object.assign({},ttip,{callbacks:{label:function(c){const t=c.dataset.data.reduce((a,b)=>a+b,0);const pct=Math.round(c.raw/t*100);return c.label+': $'+(c.raw/1e6).toFixed(1)+'M ('+pct+'%)';}}});
+  dmCharts.cat=new Chart(document.getElementById('dmCat'),{
+    type:'doughnut',
+    data:{labels:['Specialty Paper','Labels','Non-Printing','Printer & Copy'],datasets:[{data:[29032324,20349072,13034691,12293917],backgroundColor:[TC.primary,TC.secondary,TC.amber,TC.red],borderWidth:3,borderColor:'#fff',hoverOffset:10}]},
+    options:{maintainAspectRatio:false,responsive:true,cutout:'62%',plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:10,padding:8,font:{family:"'DM Sans'",size:11},color:TC.muted,usePointStyle:true}},tooltip:dmCatTooltip}}
+  });
 
-const pm=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-new Chart(document.getElementById('c3a'),{type:'line',data:{labels:pm,datasets:[{label:'Year 1',data:[12007,11373,14756,19159,26306,28107,26527,25636,29493,34465,30881,21901],borderColor:'#fcd34d',backgroundColor:'rgba(252,211,77,0.05)',fill:true,tension:.3,borderWidth:2,pointRadius:2.5},{label:'Year 2',data:[1500,1500,8056,22542,42410,51715,54362,58363,71692,87225,85923,73977],borderColor:'#64ffda',backgroundColor:'rgba(100,255,218,0.05)',fill:true,tension:.3,borderWidth:2,pointRadius:2.5}]},options:{scales:{y:{ticks:{callback:v=>'$'+(v/1e3).toFixed(0)+'K'}}},plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:8,padding:10,font:{size:10},color:'#8892b0'}},tooltip:{...ttip,callbacks:{label:c=>c.dataset.label+': $'+c.raw.toLocaleString()}}}}});
+  dmCharts.reps=new Chart(document.getElementById('dmReps'),{
+    type:'bar',
+    data:{labels:[],datasets:[{data:[],backgroundColor:TC.primary,borderRadius:4,barThickness:16}]},
+    options:{maintainAspectRatio:false,responsive:true,indexAxis:'y',plugins:{legend:{display:false},tooltip:Object.assign({},ttip,{callbacks:{label:c=>c.raw.toFixed(1)+'x rev/salary'}})},scales:{x:{...baseScales.x,grid:{color:TC.grid},ticks:{...baseScales.x.ticks,callback:v=>v.toFixed(1)+'x'}},y:{...baseScales.y,grid:{display:false},ticks:{...baseScales.y.ticks,font:{family:"'DM Sans'",size:10}}}},onClick:(e,els)=>{
+      if(!els.length)return;
+      const repName=dmCharts.reps.data.labels[els[0].index];
+      const rep=R.find(r=>r[0]===repName);
+      if(!rep)return;
+      const btn=document.querySelector(`#dmOfficeFilters .fchip[data-dm-office="${rep[1]}"]`);
+      if(btn&&!btn.classList.contains('active'))btn.click();
+    }}
+  });
+}
+function renderDm(){
+  const d=getDmFiltered();
+  document.getElementById('dmKRev').textContent='$'+(d.totalRev/1e6).toFixed(1)+'M';
+  document.getElementById('dmKOrd').textContent=Math.round(d.totalOrders).toLocaleString();
+  document.getElementById('dmKRatio').textContent=d.avgRatio.toFixed(1)+'x';
+  document.getElementById('dmKReps').textContent=d.reps.length;
+  const fullRev=R.reduce((s,r)=>s+r[2],0);
+  const fullOrd=R.reduce((s,r)=>s+r[3],0);
+  const fullRatio=fullRev/R.reduce((s,r)=>s+r[4],0);
+  const isFil=dmF.year!=='all'||dmF.offices.size>0;
+  if(isFil){
+    document.getElementById('dmKRevD').textContent=((d.totalRev/fullRev)*100).toFixed(1)+'% of total';
+    document.getElementById('dmKRevD').className='delta';
+    document.getElementById('dmKOrdD').textContent=((d.totalOrders/fullOrd)*100).toFixed(1)+'% of total';
+    document.getElementById('dmKOrdD').className='delta';
+    const diff=((d.avgRatio-fullRatio)/fullRatio*100);
+    document.getElementById('dmKRatioD').textContent=(diff>=0?'▲ +':'▼ ')+Math.abs(diff).toFixed(1)+'% vs all';
+    document.getElementById('dmKRatioD').className='delta '+(diff>=0?'up':'down');
+    document.getElementById('dmKRepsD').textContent='of 40 total';
+  }else{
+    document.getElementById('dmKRevD').textContent='Across 5 years';
+    document.getElementById('dmKRevD').className='delta up';
+    document.getElementById('dmKOrdD').textContent='Line items';
+    document.getElementById('dmKOrdD').className='delta up';
+    document.getElementById('dmKRatioD').textContent='Baseline';
+    document.getElementById('dmKRatioD').className='delta up';
+    document.getElementById('dmKRepsD').textContent='of 40 total';
+  }
+  const yL=['2015','2016','2017','2018','2019'];
+  const trend=yL.map(y=>d.reps.reduce((s,rep)=>s+REP_YEAR[rep.idx][y],0));
+  dmCharts.trend.data.datasets[0].data=trend;
+  if(dmF.year!=='all'){
+    const yi=yL.indexOf(dmF.year);
+    dmCharts.trend.data.datasets[0].pointBackgroundColor=yL.map((_,i)=>i===yi?TC.secondary:TC.primary);
+    dmCharts.trend.data.datasets[0].pointRadius=yL.map((_,i)=>i===yi?10:5);
+  }else{
+    dmCharts.trend.data.datasets[0].pointBackgroundColor=TC.primary;
+    dmCharts.trend.data.datasets[0].pointRadius=6;
+  }
+  dmCharts.trend.update();
+  document.getElementById('dmTrendSub').textContent=(dmF.offices.size?`${dmF.offices.size} office(s)`:'all offices')+(dmF.year!=='all'?` · ${dmF.year} highlighted`:'');
+  const sorted=[...d.reps].sort((a,b)=>b.ratio-a.ratio).slice(0,12);
+  dmCharts.reps.data.labels=sorted.map(r=>r.name);
+  dmCharts.reps.data.datasets[0].data=sorted.map(r=>r.ratio);
+  dmCharts.reps.data.datasets[0].backgroundColor=sorted.map((_,i)=>i<5?TC.primary:(i<9?TC.secondary:TC.amber));
+  dmCharts.reps.update();
+  document.getElementById('dmProds').innerHTML=P.slice(0,8).map((p,i)=>`<div class="prod-row"><div class="rank">${i+1}</div><div class="name">${p[0]}</div><div class="rev">$${(p[3]/1e6).toFixed(2)}M</div></div>`).join('');
+  renderDmTable(d.reps);
+}
+function renderDmTable(reps){
+  const cols=[{k:'name',l:'Rep'},{k:'office',l:'Office'},{k:'rev',l:'Revenue',a:'right',f:v=>'$'+Math.round(v).toLocaleString()},{k:'qty',l:'Orders',a:'right',f:v=>Math.round(v).toLocaleString()},{k:'salary',l:'Salary',a:'right',f:v=>'$'+v.toLocaleString()},{k:'ratio',l:'Rev/Salary',a:'right',f:v=>v.toFixed(1)+'x'}];
+  const sorted=[...reps].sort((a,b)=>{const av=a[dmTBL.col],bv=b[dmTBL.col];if(typeof av==='number')return dmTBL.dir==='asc'?av-bv:bv-av;return dmTBL.dir==='asc'?String(av).localeCompare(String(bv)):String(bv).localeCompare(String(av));});
+  let h='<thead><tr>';
+  cols.forEach(c=>h+=`<th class="${dmTBL.col===c.k?'sorted':''}" style="text-align:${c.a||'left'}" onclick="sortDm('${c.k}')">${c.l}${dmTBL.col===c.k?(dmTBL.dir==='asc'?' ↑':' ↓'):''}</th>`);
+  h+='</tr></thead><tbody>';
+  if(sorted.length===0){h+='<tr><td colspan="6" class="empty">No data — try clearing filters</td></tr>';}
+  else{sorted.forEach(r=>{h+='<tr>';cols.forEach(c=>{let v=c.f?c.f(r[c.k]):r[c.k];let style=`text-align:${c.a||'left'}`;if(c.k==='ratio'){const col=r.ratio>=25?TC.secondary:r.ratio>=22?TC.muted:TC.red;style+=`;color:${col};font-weight:700`;}h+=`<td style="${style}">${v}</td>`;});h+='</tr>';});}
+  h+='</tbody>';
+  document.getElementById('dmTbl').innerHTML=h;
+  document.getElementById('dmTblSub').textContent=`${sorted.length} rep${sorted.length!==1?'s':''} shown · sorted by ${cols.find(c=>c.k===dmTBL.col).l}`;
+}
+function sortDm(col){if(dmTBL.col===col)dmTBL.dir=dmTBL.dir==='asc'?'desc':'asc';else{dmTBL.col=col;dmTBL.dir='desc';}renderDm();}
 
-new Chart(document.getElementById('c3b'),{type:'bar',data:{labels:['Gross Margin','Net Margin','OpEx %'],datasets:[{label:'Year 1',data:[51,9.35,41.7],backgroundColor:'#fcd34d',borderRadius:3,barThickness:14},{label:'Year 2',data:[54,26.15,27.8],backgroundColor:'#64ffda',borderRadius:3,barThickness:14},{label:'Industry',data:[80.8,17.2,63.6],backgroundColor:'#a78bfa',borderRadius:3,barThickness:14}]},options:{scales:{y:{ticks:{callback:v=>v+'%'}}},plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:8,padding:10,font:{size:10},color:'#8892b0'}},tooltip:{...ttip,callbacks:{label:c=>c.dataset.label+': '+c.raw+'%'}}}}});
+/* ═══════════════════════════════════════════════════════
+   DASHBOARD 2 — CHOCOLATE SHOP
+   ═══════════════════════════════════════════════════════ */
+let csF={channels:new Set(['factory','tradeshow','preorder']),q:'all'};
+let csTBL={col:'total',dir:'desc'};
+let csCharts={};
+const Q_MONTHS={1:[0,1,2],2:[3,4,5],3:[6,7,8],4:[9,10,11]};
+const CHANNEL_IDX={factory:1,tradeshow:2,preorder:3};
+
+document.querySelectorAll('.fchip[data-cs-channel]').forEach(btn=>btn.addEventListener('click',()=>{
+  const ch=btn.dataset.csChannel;
+  if(csF.channels.has(ch)){
+    if(csF.channels.size>1){csF.channels.delete(ch);btn.classList.remove('active');}
+  }else{csF.channels.add(ch);btn.classList.add('active');}
+  if(DASH_BUILT.cs)renderCs();
+}));
+document.querySelectorAll('.fchip[data-cs-q]').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.fchip[data-cs-q]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  csF.q=btn.dataset.csQ;
+  if(DASH_BUILT.cs)renderCs();
+}));
+function resetCsFilters(){
+  csF={channels:new Set(['factory','tradeshow','preorder']),q:'all'};
+  document.querySelectorAll('.fchip[data-cs-channel]').forEach(b=>b.classList.add('active'));
+  document.querySelectorAll('.fchip[data-cs-q]').forEach(b=>b.classList.toggle('active',b.dataset.csQ==='all'));
+  renderCs();
+}
+function getCsFiltered(){
+  const monthsInQ=csF.q==='all'?[0,1,2,3,4,5,6,7,8,9,10,11]:Q_MONTHS[csF.q];
+  const rows=monthsInQ.map(mi=>{
+    const m=CM[mi];
+    const factory=csF.channels.has('factory')?m[1]:0;
+    const tradeshow=csF.channels.has('tradeshow')?m[2]:0;
+    const preorder=csF.channels.has('preorder')?m[3]:0;
+    return {month:m[0],factory,tradeshow,preorder,total:factory+tradeshow+preorder};
+  });
+  const totalRev=rows.reduce((s,r)=>s+r.total,0);
+  const totals={factory:rows.reduce((s,r)=>s+r.factory,0),tradeshow:rows.reduce((s,r)=>s+r.tradeshow,0),preorder:rows.reduce((s,r)=>s+r.preorder,0)};
+  const best=[...rows].sort((a,b)=>b.total-a.total)[0];
+  const leader=Object.entries(totals).sort((a,b)=>b[1]-a[1])[0];
+  return {rows,totalRev,totals,best,leader};
+}
+function buildCsDashboard(){
+  csCharts.stack=new Chart(document.getElementById('csStack'),{
+    type:'bar',
+    data:{labels:MONTHS,datasets:[{label:'Factory',data:[],backgroundColor:TC.secondary,borderRadius:3},{label:'Tradeshow',data:[],backgroundColor:TC.primary,borderRadius:3},{label:'Preorder',data:[],backgroundColor:TC.amber,borderRadius:3}]},
+    options:{maintainAspectRatio:false,responsive:true,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:10,padding:8,font:{family:"'DM Sans'",size:11},color:TC.muted,usePointStyle:true}},tooltip:Object.assign({},ttip,{mode:'index',callbacks:{label:c=>c.dataset.label+': $'+c.raw.toLocaleString()}})},scales:{x:{stacked:true,grid:{display:false},ticks:{color:TC.muted}},y:{stacked:true,grid:{color:TC.grid},ticks:{color:TC.muted,callback:v=>'$'+(v/1e3).toFixed(0)+'K'}}}}
+  });
+
+  const csMixTooltip=Object.assign({},ttip,{callbacks:{label:function(c){const t=c.dataset.data.reduce((a,b)=>a+b,0);const pct=t?Math.round(c.raw/t*100):0;return c.label+': $'+(c.raw/1e3).toFixed(1)+'K ('+pct+'%)';}}});
+  csCharts.mix=new Chart(document.getElementById('csMix'),{
+    type:'doughnut',
+    data:{labels:['Factory','Tradeshow','Preorder'],datasets:[{data:[],backgroundColor:[TC.secondary,TC.primary,TC.amber],borderWidth:3,borderColor:'#fff',hoverOffset:10}]},
+    options:{maintainAspectRatio:false,responsive:true,cutout:'62%',plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:10,padding:8,font:{family:"'DM Sans'",size:11},color:TC.muted,usePointStyle:true}},tooltip:csMixTooltip}}
+  });
+
+  csCharts.cum=new Chart(document.getElementById('csCum'),{
+    type:'line',
+    data:{labels:MONTHS,datasets:[{label:'Cumulative Revenue',data:[],borderColor:TC.secondary,backgroundColor:TC.secondaryLight,fill:true,tension:.3,borderWidth:3,pointRadius:5,pointBackgroundColor:TC.secondary,pointBorderColor:'#fff',pointBorderWidth:2}]},
+    options:{maintainAspectRatio:false,responsive:true,plugins:{legend:{display:false},tooltip:Object.assign({},ttip,{callbacks:{label:c=>'Total: $'+c.raw.toLocaleString()}})},scales:{x:{grid:{display:false},ticks:{color:TC.muted}},y:{grid:{color:TC.grid},ticks:{color:TC.muted,callback:v=>'$'+(v/1e3).toFixed(0)+'K'}}}}
+  });
+}
+function renderCs(){
+  const d=getCsFiltered();
+  document.getElementById('csKRev').textContent='$'+Math.round(d.totalRev/1e3)+'K';
+  const isFil=csF.q!=='all'||csF.channels.size<3;
+  document.getElementById('csKRevD').textContent=isFil?'Filtered view':'All channels';
+  document.getElementById('csKRevD').className='delta '+(isFil?'':'up');
+  document.getElementById('csKBest').textContent=d.best?d.best.month:'—';
+  document.getElementById('csKBestD').textContent=d.best?'$'+Math.round(d.best.total/1e3)+'K total':'';
+  const avg=d.rows.length?d.totalRev/d.rows.length:0;
+  document.getElementById('csKAvg').textContent='$'+Math.round(avg/1e3)+'K';
+  document.getElementById('csKAvgD').textContent=`${d.rows.length} month${d.rows.length!==1?'s':''}`;
+  const leaderName={factory:'Factory',tradeshow:'Tradeshow',preorder:'Preorder'}[d.leader[0]];
+  document.getElementById('csKLead').textContent=leaderName;
+  const leaderPct=d.totalRev?Math.round(d.leader[1]/d.totalRev*100):0;
+  document.getElementById('csKLeadD').textContent=leaderPct+'% share';
+
+  // Stacked bar — show all 12 months always, zero out non-selected
+  const fullMonths=MONTHS.map((_,mi)=>{
+    const inQ=csF.q==='all'||Q_MONTHS[csF.q].includes(mi);
+    const m=CM[mi];
+    return {
+      f:inQ&&csF.channels.has('factory')?m[1]:0,
+      t:inQ&&csF.channels.has('tradeshow')?m[2]:0,
+      p:inQ&&csF.channels.has('preorder')?m[3]:0
+    };
+  });
+  csCharts.stack.data.datasets[0].data=fullMonths.map(m=>m.f);
+  csCharts.stack.data.datasets[1].data=fullMonths.map(m=>m.t);
+  csCharts.stack.data.datasets[2].data=fullMonths.map(m=>m.p);
+  csCharts.stack.update();
+  document.getElementById('csStackSub').textContent=(csF.channels.size===3?'all channels':`${csF.channels.size} of 3 channels`)+(csF.q!=='all'?` · Q${csF.q} only`:'');
+
+  csCharts.mix.data.datasets[0].data=[d.totals.factory,d.totals.tradeshow,d.totals.preorder];
+  csCharts.mix.update();
+
+  const cum=[];let running=0;
+  fullMonths.forEach(m=>{running+=m.f+m.t+m.p;cum.push(running);});
+  csCharts.cum.data.datasets[0].data=cum;
+  csCharts.cum.update();
+
+  renderCsTable(d.rows);
+}
+function renderCsTable(rows){
+  const cols=[{k:'month',l:'Month'},{k:'factory',l:'Factory',a:'right',f:v=>'$'+v.toLocaleString()},{k:'tradeshow',l:'Tradeshow',a:'right',f:v=>'$'+v.toLocaleString()},{k:'preorder',l:'Preorder',a:'right',f:v=>'$'+v.toLocaleString()},{k:'total',l:'Total',a:'right',f:v=>'$'+v.toLocaleString()}];
+  const sorted=[...rows].sort((a,b)=>{const av=a[csTBL.col],bv=b[csTBL.col];if(typeof av==='number')return csTBL.dir==='asc'?av-bv:bv-av;return csTBL.dir==='asc'?String(av).localeCompare(String(bv)):String(bv).localeCompare(String(av));});
+  let h='<thead><tr>';
+  cols.forEach(c=>h+=`<th class="${csTBL.col===c.k?'sorted':''}" style="text-align:${c.a||'left'}" onclick="sortCs('${c.k}')">${c.l}${csTBL.col===c.k?(csTBL.dir==='asc'?' ↑':' ↓'):''}</th>`);
+  h+='</tr></thead><tbody>';
+  if(sorted.length===0){h+='<tr><td colspan="5" class="empty">No data — try clearing filters</td></tr>';}
+  else{sorted.forEach(r=>{h+='<tr>';cols.forEach(c=>{const v=c.f?c.f(r[c.k]):r[c.k];h+=`<td style="text-align:${c.a||'left'}">${v}</td>`;});h+='</tr>';});}
+  h+='</tbody>';
+  document.getElementById('csTbl').innerHTML=h;
+  document.getElementById('csTblSub').textContent=`${sorted.length} month${sorted.length!==1?'s':''} shown · sorted by ${cols.find(c=>c.k===csTBL.col).l}`;
+}
+function sortCs(col){if(csTBL.col===col)csTBL.dir=csTBL.dir==='asc'?'desc':'asc';else{csTBL.col=col;csTBL.dir='desc';}renderCs();}
+
+/* ═══════════════════════════════════════════════════════
+   DASHBOARD 3 — PAWFECT
+   ═══════════════════════════════════════════════════════ */
+let ppF={year:'both'};
+let ppTBL={col:null,dir:'desc'};
+let ppCharts={};
+const BE_PRICE=70;
+const BE_VAR=22.40;
+const BE_FIXED=7738;
+const BE_CAPACITY=352;
+const BE_POINT=162;
+
+document.querySelectorAll('.fchip[data-pp-year]').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.fchip[data-pp-year]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  ppF.year=btn.dataset.ppYear;
+  if(DASH_BUILT.pp)renderPp();
+}));
+function resetPpFilters(){
+  ppF={year:'both'};
+  document.querySelectorAll('.fchip[data-pp-year]').forEach(b=>b.classList.toggle('active',b.dataset.ppYear==='both'));
+  renderPp();
+}
+function buildPpDashboard(){
+  ppCharts.cash=new Chart(document.getElementById('ppCash'),{
+    type:'line',
+    data:{labels:MONTHS,datasets:[
+      {label:'Year 1',data:PP_Y1,borderColor:TC.amber,backgroundColor:TC.amberLight,fill:true,tension:.3,borderWidth:2.5,pointRadius:4,pointBackgroundColor:TC.amber,pointBorderColor:'#fff',pointBorderWidth:2},
+      {label:'Year 2',data:PP_Y2,borderColor:TC.secondary,backgroundColor:TC.secondaryLight,fill:true,tension:.3,borderWidth:2.5,pointRadius:4,pointBackgroundColor:TC.secondary,pointBorderColor:'#fff',pointBorderWidth:2}
+    ]},
+    options:{maintainAspectRatio:false,responsive:true,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:10,padding:8,font:{family:"'DM Sans'",size:11},color:TC.muted,usePointStyle:true}},tooltip:Object.assign({},ttip,{mode:'index',callbacks:{label:c=>c.dataset.label+': $'+c.raw.toLocaleString()}})},scales:{x:{grid:{display:false},ticks:{color:TC.muted}},y:{grid:{color:TC.grid},ticks:{color:TC.muted,callback:v=>'$'+(v/1e3).toFixed(0)+'K'}}}}
+  });
+
+  ppCharts.mar=new Chart(document.getElementById('ppMar'),{
+    type:'bar',
+    data:{labels:['Gross Margin','Net Margin','OpEx %'],datasets:[
+      {label:'Year 1',data:[51,9.35,41.7],backgroundColor:TC.amber,borderRadius:4,barThickness:24},
+      {label:'Year 2',data:[54,26.15,27.8],backgroundColor:TC.secondary,borderRadius:4,barThickness:24},
+      {label:'Industry',data:[80.8,17.2,63.6],backgroundColor:TC.primary,borderRadius:4,barThickness:24}
+    ]},
+    options:{maintainAspectRatio:false,responsive:true,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:10,padding:8,font:{family:"'DM Sans'",size:11},color:TC.muted,usePointStyle:true}},tooltip:Object.assign({},ttip,{callbacks:{label:c=>c.dataset.label+': '+c.raw+'%'}})},scales:{x:{grid:{display:false},ticks:{color:TC.muted}},y:{grid:{color:TC.grid},ticks:{color:TC.muted,callback:v=>v+'%'}}}}
+  });
+
+  ppCharts.quart=new Chart(document.getElementById('ppQuart'),{
+    type:'bar',
+    data:{labels:['Q1','Q2','Q3','Q4'],datasets:[
+      {label:'Year 1',data:[],backgroundColor:TC.amber,borderRadius:4,barThickness:34},
+      {label:'Year 2',data:[],backgroundColor:TC.secondary,borderRadius:4,barThickness:34}
+    ]},
+    options:{maintainAspectRatio:false,responsive:true,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:10,padding:8,font:{family:"'DM Sans'",size:11},color:TC.muted,usePointStyle:true}},tooltip:Object.assign({},ttip,{callbacks:{label:c=>c.dataset.label+': $'+c.raw.toLocaleString()}})},scales:{x:{grid:{display:false},ticks:{color:TC.muted}},y:{grid:{color:TC.grid},ticks:{color:TC.muted,callback:v=>'$'+(v/1e3).toFixed(0)+'K'}}}}
+  });
+
+  // Wire up breakeven slider
+  const slider=document.getElementById('beSlider');
+  slider.addEventListener('input',updateBreakeven);
+}
+function updateBreakeven(){
+  const s=parseInt(document.getElementById('beSlider').value);
+  const rev=s*BE_PRICE;
+  const contrib=s*(BE_PRICE-BE_VAR);
+  const above=s-BE_POINT;
+  const util=(s/BE_CAPACITY)*100;
+  document.getElementById('beVal').textContent=s;
+  document.getElementById('beRev').textContent='$'+rev.toLocaleString();
+  document.getElementById('beContrib').textContent='$'+contrib.toLocaleString();
+  document.getElementById('beAbove').textContent=(above>=0?'+':'')+above+' /mo';
+  document.getElementById('beUtil').textContent=util.toFixed(1)+'%';
+  const ac=document.getElementById('beAboveCell');
+  ac.classList.toggle('good',above>=0);
+  ac.classList.toggle('bad',above<0);
+  // Meter fill: 0%=50 services, 100%=320 services
+  const fillPct=((s-50)/(320-50))*100;
+  document.getElementById('beFill').style.width=fillPct+'%';
+}
+function renderPp(){
+  const y1Total=PP_Y1.reduce((a,b)=>a+b,0);
+  const y2Total=PP_Y2.reduce((a,b)=>a+b,0);
+  let totalRev,marginText,marginDelta;
+  if(ppF.year==='y1'){totalRev=y1Total;marginText='9.4%';marginDelta='Year 1 net margin';}
+  else if(ppF.year==='y2'){totalRev=y2Total;marginText='26.2%';marginDelta='Year 2 net margin';}
+  else{totalRev=y1Total+y2Total;marginText='17.8%';marginDelta='Avg of both years';}
+  document.getElementById('ppKRev').textContent='$'+Math.round(totalRev/1e3)+'K';
+  document.getElementById('ppKRevD').textContent={both:'Y1 + Y2 combined',y1:'Year 1 only',y2:'Year 2 only'}[ppF.year];
+  document.getElementById('ppKMar').textContent=marginText;
+  document.getElementById('ppKMarD').textContent=marginDelta;
+
+  // Cash chart — toggle Y1/Y2 visibility
+  ppCharts.cash.data.datasets[0].hidden=(ppF.year==='y2');
+  ppCharts.cash.data.datasets[1].hidden=(ppF.year==='y1');
+  ppCharts.cash.update();
+  document.getElementById('ppCashSub').textContent={both:'Year 1 + Year 2',y1:'Year 1 only',y2:'Year 2 only'}[ppF.year];
+
+  // Quarterly distribution
+  const sumQ=arr=>[arr.slice(0,3).reduce((a,b)=>a+b,0),arr.slice(3,6).reduce((a,b)=>a+b,0),arr.slice(6,9).reduce((a,b)=>a+b,0),arr.slice(9,12).reduce((a,b)=>a+b,0)];
+  ppCharts.quart.data.datasets[0].data=sumQ(PP_Y1);
+  ppCharts.quart.data.datasets[1].data=sumQ(PP_Y2);
+  ppCharts.quart.data.datasets[0].hidden=(ppF.year==='y2');
+  ppCharts.quart.data.datasets[1].hidden=(ppF.year==='y1');
+  ppCharts.quart.update();
+  document.getElementById('ppQSub').textContent={both:'Both years',y1:'Year 1 only',y2:'Year 2 only'}[ppF.year];
+
+  renderPpTable();
+  updateBreakeven();
+}
+function renderPpTable(){
+  const cols=[{k:0,l:'Company'},{k:1,l:'Price'},{k:2,l:'Coverage'},{k:3,l:'Equipment'},{k:4,l:'Reputation'},{k:5,l:'Digital'}];
+  let rows=CP.map(r=>r);
+  if(ppTBL.col!==null){
+    rows=[...rows].sort((a,b)=>ppTBL.dir==='asc'?String(a[ppTBL.col]).localeCompare(String(b[ppTBL.col])):String(b[ppTBL.col]).localeCompare(String(a[ppTBL.col])));
+  }
+  let h='<thead><tr>';
+  cols.forEach(c=>h+=`<th class="${ppTBL.col===c.k?'sorted':''}" onclick="sortPp(${c.k})">${c.l}${ppTBL.col===c.k?(ppTBL.dir==='asc'?' ↑':' ↓'):''}</th>`);
+  h+='</tr></thead><tbody>';
+  rows.forEach(r=>{const hl=r[6];h+=`<tr${hl?' class="hl"':''}>`;cols.forEach(c=>h+=`<td>${r[c.k]}</td>`);h+='</tr>';});
+  h+='</tbody>';
+  document.getElementById('ppTbl').innerHTML=h;
+}
+function sortPp(col){if(ppTBL.col===col)ppTBL.dir=ppTBL.dir==='asc'?'desc':'asc';else{ppTBL.col=col;ppTBL.dir='desc';}renderPpTable();}
+
+/* ═══ Resize handler ═══ */
+window.addEventListener('resize',()=>{
+  ['dm','cs','pp'].forEach(id=>{
+    if(!DASH_BUILT[id])return;
+    const charts={dm:dmCharts,cs:csCharts,pp:ppCharts}[id];
+    Object.values(charts).forEach(c=>{if(c&&c.resize)c.resize();});
+  });
+});
 </script>
 </body>
 </html>
